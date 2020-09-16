@@ -49,11 +49,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         jLabel1.setText("Ingrese la siguiente información para inicializar su repositorio.");
 
-        TF_ImputAuthorName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TF_ImputAuthorNameActionPerformed(evt);
-            }
-        });
         TF_ImputAuthorName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 TF_ImputAuthorNameKeyTyped(evt);
@@ -64,11 +59,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         jLabel3.setText("Nombre del repositorio:");
 
-        TF_ImputRepName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TF_ImputRepNameActionPerformed(evt);
-            }
-        });
         TF_ImputRepName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 TF_ImputRepNameKeyTyped(evt);
@@ -175,10 +165,6 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_EventClickRepoName
 
-    private void TF_ImputAuthorNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TF_ImputAuthorNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TF_ImputAuthorNameActionPerformed
-
     //se revisa el text field  de nombre de autor para ver si tiene un string valido
     private void TF_ImputAuthorNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TF_ImputAuthorNameKeyTyped
         // TODO add your handling code here:
@@ -188,10 +174,6 @@ public class MainWindow extends javax.swing.JFrame {
             this.TF_ImputAuthorName.setBorder(BorderFactory.createLoweredSoftBevelBorder());
         }
     }//GEN-LAST:event_TF_ImputAuthorNameKeyTyped
-
-    private void TF_ImputRepNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TF_ImputRepNameActionPerformed
-        
-    }//GEN-LAST:event_TF_ImputRepNameActionPerformed
 
     //se revisa el text field  de nombre del repositorio para ver si tiene un string valido
     private void TF_ImputRepNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TF_ImputRepNameKeyTyped
@@ -211,13 +193,16 @@ public class MainWindow extends javax.swing.JFrame {
         if(Author != null  && !Author.trim().isEmpty() && NameRep !=null && !NameRep.trim().isEmpty() && !Author.equals(NameRep)){
             System.out.printf("Creando repositorio...\n");
             JOptionPane.showMessageDialog(this, "Repositorio listo", "Creación de repositorio", JOptionPane.INFORMATION_MESSAGE);
+            
         }
         try{
-            this.gitController.gitInit(NameRep, Author);
+            
+            PrincipalWindow KeepWindow = new PrincipalWindow(this.gitController.gitInit(NameRep, Author));
+            KeepWindow.setVisible(true);
+            this.setVisible(false);
         }
         catch(RepositoryAuthorException e){
             JOptionPane.showMessageDialog(this, "El nombre del repositorio debe ser distinto al nombre del autor", "Error de datos ingresados", JOptionPane.ERROR_MESSAGE);
-            return;
         }
         catch(InvalidDatasException e){
             JOptionPane.showMessageDialog(this, "Repositorio no válido", "Error de validación", JOptionPane.ERROR_MESSAGE);
