@@ -69,7 +69,37 @@ public class Workspace {
 
     @Override
     public String toString() {
-        return "[" + Archivos_Workspace + ']';
+        return "-" + Archivos_Workspace + '.';
+    }
+    
+    
+    public String toStringInterfaz() {
+        //String Archivos = "";
+        int i;
+        ArchTextoPlano arch;
+        String NameArchivo;
+        String formando = "- ";
+        String guion = "- ";
+        String nuevo;
+        for(i=0;i<Archivos_Workspace.size();i++){
+            if(i == 0){
+              arch = Archivos_Workspace.get(i);
+              NameArchivo = arch.getNombre();
+              NameArchivo = NameArchivo.concat("\n");
+              formando = formando.concat(NameArchivo);  
+            }
+            else{
+                arch = Archivos_Workspace.get(i);
+                NameArchivo = arch.getNombre();
+                NameArchivo = NameArchivo.concat("\n");
+                nuevo = guion.concat(NameArchivo);
+                formando = formando.concat(nuevo);
+            }
+            
+        }
+        //Archivos = Archivos.concat(formando); 
+        
+        return formando;
     }
     
 }

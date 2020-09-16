@@ -32,18 +32,21 @@ public class GitController {
     }
     
     
-    public ZonasDeTrabajo gitAgregarArchivo (String NameFile, String Content, ZonasDeTrabajo Zonas) throws DatasCreateFileInvalidException{
+    public Repositorio gitAgregarArchivo (String NameFile, String Content, ZonasDeTrabajo Zonas, Repositorio rep) throws DatasCreateFileInvalidException{
         
         
         
         if(NameFile == null || NameFile.isEmpty() || NameFile.trim().isEmpty() || Content == null || Content.isEmpty() || Content.trim().isEmpty()){
             throw new DatasCreateFileInvalidException();
         }
+
+        
+     
         
         //EN CASO QUE LOS DATOS SEAN VALIDOS SE PROCEDE CON EL DESARROLLO
         //DEL PROGRAMA
         
-        
+        System.out.printf("ENTRO A GITCONTROLLER GIT AGREGAR ARCHIVOS..\n\n");
         String FechaHora;
         
         
@@ -73,8 +76,21 @@ public class GitController {
         
         //SE ACTUALIZA EL TDA DE ZonasDeTrabajo
         Zonas.setWorkspace(NuevoWorkspace);
+        rep.setZonas(Zonas);
         System.out.printf("SE RETORNA LA NUEVA ZONA DEL METODO AGREGARARCHIVOS.\n");
-        return Zonas;
+        return rep;
+    
+    
+    }
+    
+    
+    public String gitStatusWorkspace(Repositorio repositorio){
+        
+        ZonasDeTrabajo Zonas = repositorio.getZonas();
+        Workspace w = Zonas.getWorkspace();
+        String archivosW = w.toStringInterfaz();
+
+        return archivosW;
     
     
     }

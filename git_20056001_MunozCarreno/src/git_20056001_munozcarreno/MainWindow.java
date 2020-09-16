@@ -195,9 +195,10 @@ public class MainWindow extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Repositorio listo", "Creación de repositorio", JOptionPane.INFORMATION_MESSAGE);
             
         }
+        
         try{
             
-            PrincipalWindow KeepWindow = new PrincipalWindow(this.gitController.gitInit(NameRep, Author));
+            PrincipalWindow KeepWindow = new PrincipalWindow(this.gitController.gitInit(NameRep, Author),gitController);
             KeepWindow.setVisible(true);
             this.setVisible(false);
         }

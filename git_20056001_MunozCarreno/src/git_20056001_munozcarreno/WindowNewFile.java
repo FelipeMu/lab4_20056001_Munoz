@@ -7,7 +7,6 @@ package git_20056001_munozcarreno;
 
 import java.awt.Color;
 import javax.swing.BorderFactory;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,14 +17,16 @@ public class WindowNewFile extends javax.swing.JFrame {
 
     private Repositorio repositorio;
     private GitController gitController;
-    JFrame parentWindow;
+    //JFrame parentWindow;
     /**
      * Creates new form WindowNewFile
      */
-    public WindowNewFile(Repositorio repositorio,JFrame parentWindow) {
+    public WindowNewFile(Repositorio repositorio,GitController gitController) {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.parentWindow = parentWindow;
+        //this.parentWindow = parentWindow;
+        this.repositorio=repositorio;
+        this.gitController = gitController;
         
     }
 
@@ -142,41 +143,29 @@ public class WindowNewFile extends javax.swing.JFrame {
 
     private void EventClickSendDatasCreateFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickSendDatasCreateFileActionPerformed
          //SE ANALIZA LA ENTRADA DEL NOMBRE DEL ARCHIVO Y EL CONTENIDO DE ESTE
-         String NameFile = this.TF_ImputContenidoCreateFileActionPerformed.getText();
+         String NameFile = this.TF_ImputNameFileCreateFileActionPerformed.getText();
          String Content = this.TF_ImputContenidoCreateFileActionPerformed.getText();
-         ZonasDeTrabajo zonasAux = repositorio.getZonas();
+
          try{
-             //ZonasDeTrabajo zonasAux = repositorio.getZonas();
-             System.out.printf("entro al try.\n");
-             zonasAux = gitController.gitAgregarArchivo(NameFile, Content, zonasAux);
-             repositorio.setZonas(zonasAux);
-             //repositorio.setZonas(gitController.gitAgregarArchivo(NameFile, Content, zonasAux));
-             PrincipalWindow KeepWindow2 = new PrincipalWindow(repositorio);
-             System.out.printf("se crea la nueva ventana principaL.\n");
-             //KeepWindow2.setVisible(true);
-             this.parentWindow.setVisible(true);
-             
-             this.setVisible(false);
-             
+          
+         
+            PrincipalWindow KeepWindow2 = new PrincipalWindow(gitController.gitAgregarArchivo(NameFile, Content,repositorio.getZonas(),repositorio),gitController);
+            KeepWindow2.setVisible(true);
+            this.setVisible(false);
+  
          }
          catch(DatasCreateFileInvalidException e){
-             System.out.printf("entro al catch.\n");
              
-             JOptionPane.showMessageDialog(this, "Error", "Error de datos ingresados", JOptionPane.ERROR_MESSAGE);
-             /*
-             if(NameFile == null || NameFile.isEmpty() || NameFile.trim().isEmpty()){
-                 this.TF_ImputNameFileCreateFileActionPerformed.setBorder(BorderFactory.createLineBorder(Color.red));
-             }
-             if(Content == null || Content.isEmpty() || Content.trim().isEmpty()){
-                 this.TF_ImputContenidoCreateFileActionPerformed.setBorder(BorderFactory.createLineBorder(Color.red));
-             }
-             */
+             
+             JOptionPane.showMessageDialog(this, "Por favor, rellene los recuadros indicados", "Error de datos", JOptionPane.ERROR_MESSAGE);
+             
          }
+        
    
     }//GEN-LAST:event_EventClickSendDatasCreateFileActionPerformed
 
     private void EventClickSendNameFileCreateFile(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickSendNameFileCreateFile
-        // TODO add your handling code here:
+      
         System.out.printf("Click en aceptar nombre de autor.\n");
         String NameFile = this.TF_ImputNameFileCreateFileActionPerformed.getText();
         if(NameFile == null || NameFile.isEmpty() || NameFile.trim().isEmpty()){
@@ -191,10 +180,10 @@ public class WindowNewFile extends javax.swing.JFrame {
          
     private void EventClickSendContentCreateFile(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickSendContentCreateFile
         // TODO add your handling code here:
-        System.out.printf("Click en aceptar nombre de autor.\n");
+        System.out.printf("Click en aceptar contenido del archivo.\n");
         String Content = this.TF_ImputContenidoCreateFileActionPerformed.getText();
         if(Content == null || Content.isEmpty() || Content.trim().isEmpty()){
-            System.out.printf("Error en entrada de nombre de autor.\n");
+            System.out.printf("Error en entrada contenido de archivo.\n");
             this.TF_ImputContenidoCreateFileActionPerformed.setBorder(BorderFactory.createLineBorder(Color.red));
         }
         else{

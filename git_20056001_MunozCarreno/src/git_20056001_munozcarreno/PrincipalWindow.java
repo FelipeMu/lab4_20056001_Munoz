@@ -11,12 +11,14 @@ package git_20056001_munozcarreno;
  */
 public class PrincipalWindow extends javax.swing.JFrame {
     private Repositorio repositorio;
+    private GitController gitController;
     /**
      * Creates new form PrincipalWindow
      */
-    public PrincipalWindow(Repositorio repositorio) {
+    public PrincipalWindow(Repositorio repositorio,GitController gitController) {
         initComponents();
         this.repositorio = repositorio;
+        this.gitController = gitController;
         this.setLocationRelativeTo(null);
     }
 
@@ -47,10 +49,11 @@ public class PrincipalWindow extends javax.swing.JFrame {
         BTN_pull = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        TA_InfoZones = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
+        TF_NameZome = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Repositorio");
@@ -139,10 +142,10 @@ public class PrincipalWindow extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Haettenschweiler", 0, 24)); // NOI18N
         jLabel5.setText("Comandos disponibles:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setEnabled(false);
-        jScrollPane1.setViewportView(jTextArea1);
+        TA_InfoZones.setColumns(20);
+        TA_InfoZones.setRows(5);
+        TA_InfoZones.setEnabled(false);
+        jScrollPane1.setViewportView(TA_InfoZones);
 
         jLabel6.setFont(new java.awt.Font("Haettenschweiler", 0, 24)); // NOI18N
         jLabel6.setText("Información de las zonas de trabajo:");
@@ -151,6 +154,9 @@ public class PrincipalWindow extends javax.swing.JFrame {
         jLabel7.setText("Git");
 
         jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        TF_NameZome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        TF_NameZome.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -170,9 +176,12 @@ public class PrincipalWindow extends javax.swing.JFrame {
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGap(33, 33, 33))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addComponent(TF_NameZome, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40))
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -239,7 +248,9 @@ public class PrincipalWindow extends javax.swing.JFrame {
                             .addComponent(jSeparator4)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGap(11, 11, 11)
-                                .addComponent(jLabel6)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel6)
+                                    .addComponent(TF_NameZome, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jScrollPane1)))
                         .addContainerGap())))
@@ -252,7 +263,11 @@ public class PrincipalWindow extends javax.swing.JFrame {
     
     
     private void EventClickWActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickWActionPerformed
-        // TODO add your handling code here:
+        // AQUI SE PROCE A MOSTRAR LA INFORMACIÓN DE LA ZONA WORKSPACE
+        this.TF_NameZome.setText("Workspace");
+        this.TA_InfoZones.setText(null);
+        String StatusW = gitController.gitStatusWorkspace(repositorio);
+        this.TA_InfoZones.setText(StatusW);
     }//GEN-LAST:event_EventClickWActionPerformed
 
     private void EventClickIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickIActionPerformed
@@ -274,11 +289,15 @@ public class PrincipalWindow extends javax.swing.JFrame {
     private void EventClickNewFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickNewFileActionPerformed
         //se debe abrir una ventana temporal para ingresar nombre de autor y archivo
         //SE CREA UN OBJETO DE TIPO WindowNewFile
-        
-        WindowNewFile WindowForCreateFile = new WindowNewFile(repositorio,this);
+        this.TA_InfoZones.setText(null);
+        if(repositorio == null){
+            System.out.printf("EL REPOSITORIO ES NULL AWEONAOOOO.\n");
+        }
+        WindowNewFile WindowForCreateFile = new WindowNewFile(repositorio,gitController);
         //LA CENTANA SE HACE VISIBLE PARA EL USUARIO
         WindowForCreateFile.setVisible(true);
-        //this.setVisible(false);
+        //this.dispose();
+        this.setVisible(false);
         
         
     }//GEN-LAST:event_EventClickNewFileActionPerformed
@@ -313,6 +332,8 @@ public class PrincipalWindow extends javax.swing.JFrame {
     private javax.swing.JButton BTN_commit;
     private javax.swing.JButton BTN_pull;
     private javax.swing.JButton BTN_push;
+    private javax.swing.JTextArea TA_InfoZones;
+    private javax.swing.JTextField TF_NameZome;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -326,6 +347,5 @@ public class PrincipalWindow extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
