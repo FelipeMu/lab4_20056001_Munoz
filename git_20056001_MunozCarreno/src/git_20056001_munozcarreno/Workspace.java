@@ -72,7 +72,10 @@ public class Workspace {
         return "-" + Archivos_Workspace + '.';
     }
     
-    
+    /**
+     * 
+     * @return String
+     */
     public String toStringInterfaz() {
         //String Archivos = "";
         int i;
@@ -100,6 +103,31 @@ public class Workspace {
         //Archivos = Archivos.concat(formando); 
         
         return formando;
+    }
+    
+    public String toStringInterfazNum() {
+        //String Archivos = "";
+        int i;
+        String j;
+        String parte1;
+        String parentesis = ")";
+        ArchTextoPlano arch;
+        String NameArchivo;
+        String NumyA;
+        String Archivos = "";
+        String completo;
+        for(i=0;i<Archivos_Workspace.size();i++){
+
+             //Se procede a trandoformar el indice a String
+            j = String.valueOf(i+1);
+            parte1 = j.concat(parentesis);    
+            arch = Archivos_Workspace.get(i);
+            NameArchivo = arch.getNombre();
+            NumyA = parte1.concat(NameArchivo);
+            completo = NumyA.concat("\n");
+            Archivos = Archivos.concat(completo);  
+        } 
+        return Archivos;
     }
     
 }

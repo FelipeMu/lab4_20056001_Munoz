@@ -98,5 +98,37 @@ public class Index {
         return "[" + Archivos_Index + ']';
     }
     
+    /**
+     * 
+     * @return String
+     */
+    public String toStringInterfaz() {
+        //String Archivos = "";
+        int i;
+        ArchTextoPlano arch;
+        String NameArchivo;
+        String formando = "- ";
+        String guion = "- ";
+        String nuevo;
+        for(i=0;i<Archivos_Index.size();i++){
+            if(i == 0){
+              arch = Archivos_Index.get(i);
+              NameArchivo = arch.getNombre();
+              NameArchivo = NameArchivo.concat("\n");
+              formando = formando.concat(NameArchivo);  
+            }
+            else{
+                arch = Archivos_Index.get(i);
+                NameArchivo = arch.getNombre();
+                NameArchivo = NameArchivo.concat("\n");
+                nuevo = guion.concat(NameArchivo);
+                formando = formando.concat(nuevo);
+            }
+            
+        }
+        //Archivos = Archivos.concat(formando); 
+        
+        return formando;
+    }
     
 }

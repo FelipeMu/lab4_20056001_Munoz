@@ -20,6 +20,7 @@ public class PrincipalWindow extends javax.swing.JFrame {
         this.repositorio = repositorio;
         this.gitController = gitController;
         this.setLocationRelativeTo(null);
+        this.TF_NameZome.setBorder(null);
     }
 
     /**
@@ -155,7 +156,10 @@ public class PrincipalWindow extends javax.swing.JFrame {
 
         jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        TF_NameZome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        TF_NameZome.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        TF_NameZome.setForeground(new java.awt.Color(128, 128, 128));
+        TF_NameZome.setBorder(null);
+        TF_NameZome.setCaretColor(new java.awt.Color(128, 128, 128));
         TF_NameZome.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -176,11 +180,11 @@ public class PrincipalWindow extends javax.swing.JFrame {
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
                         .addComponent(TF_NameZome, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40))
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
@@ -263,15 +267,23 @@ public class PrincipalWindow extends javax.swing.JFrame {
     
     
     private void EventClickWActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickWActionPerformed
-        // AQUI SE PROCE A MOSTRAR LA INFORMACIÓN DE LA ZONA WORKSPACE
+        // AQUI SE PROCEDE A MOSTRAR LA INFORMACIÓN DE LA ZONA WORKSPACE
         this.TF_NameZome.setText("Workspace");
+        this.TF_NameZome.setBorder(null);
         this.TA_InfoZones.setText(null);
         String StatusW = gitController.gitStatusWorkspace(repositorio);
         this.TA_InfoZones.setText(StatusW);
     }//GEN-LAST:event_EventClickWActionPerformed
 
     private void EventClickIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickIActionPerformed
-        // TODO add your handling code here:
+        // AQUI SE PROCEDE A MOSTRAR LA INFORMACIÓN DE LA ZONA INDEX
+        // AQUI SE PROCEDE A MOSTRAR LA INFORMACIÓN DE LA ZONA WORKSPACE
+        this.TF_NameZome.setText("Index");
+        this.TF_NameZome.setBorder(null);
+        this.TA_InfoZones.setText(null);
+        String StatusI = gitController.gitStatusIndex(repositorio);
+        this.TA_InfoZones.setText(StatusI);
+        
     }//GEN-LAST:event_EventClickIActionPerformed
 
     private void EventClickLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickLActionPerformed
@@ -303,7 +315,24 @@ public class PrincipalWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_EventClickNewFileActionPerformed
 
     private void EventAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventAddActionPerformed
-        // TODO add your handling code here:
+        // No es necesario abrir ninguna ventana
+        //solo hace falta modificar el repotorio y algun mensaje de informacion
+        
+        // se vacia el text area de informacion de zonas de trabajo
+        this.TA_InfoZones.setText(null);
+        WindowHowSendFiles Windowcapa1 = new WindowHowSendFiles(repositorio,gitController);
+        Windowcapa1.setVisible(true);
+        this.setVisible(false);
+        
+        /*
+        PrincipalWindow KeepWindow3 = new PrincipalWindow(gitController.gitAdd(repositorio.getZonas(), repositorio),gitController);
+        KeepWindow3.setVisible(true);
+        this.setVisible(false);
+        
+        */
+        
+        
+        
     }//GEN-LAST:event_EventAddActionPerformed
 
     private void EventCommitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventCommitActionPerformed
