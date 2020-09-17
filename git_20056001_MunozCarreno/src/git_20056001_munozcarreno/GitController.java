@@ -151,6 +151,63 @@ public class GitController {
 
     } 
    
+    public Repositorio gitAddCaso2 (ZonasDeTrabajo Zonas,Repositorio rep, int AmountFilesTT,int NumberChoose) throws FilesTransferedException, NumberFileOutLimitException{
+        //GENERO UN OBJETO DE TIPO ArchTextoPlano
+        Workspace ZonaWorkspace = Zonas.getWorkspace();
+        //DEFINO UN OBJETO DE TIPO Arraylist<ArchTextoPlano>
+        ArrayList<ArchTextoPlano> LosArchivos = ZonaWorkspace.getArchivos_Workspace();
+        
+        ArrayList<ArchTextoPlano> ListaIndex;
+        
+        
+        
+        
+        
+        //SE CREA UN OBJETO TEMPORAL DE TIPO WORKSPACE
+        Workspace WorkspaceTemp = Zonas.getWorkspace();
+        //SE OBTIENE LA LISTA DE ARCHIVOS CONTENIDOS EN WOKSPACE
+        ArrayList<ArchTextoPlano> ListaArchivos_W = WorkspaceTemp.getArchivos_Workspace();
+        int cantidadArch=ListaArchivos_W.size();
+        
+        if(AmountFilesTT == 0){
+            throw new FilesTransferedException();
+        }
+        
+        if(NumberChoose < 0 || NumberChoose > cantidadArch){
+            throw new NumberFileOutLimitException();
+        }
+        
+        
+        int indice = NumberChoose - 1;
+        //AHORA SE DEBE TRANFERIR EL ARCHIVO EN LA POSICION INDICE AL INDEX
+        //SE DEFINE UN OBJETO TIPO INDEX
+        Index NIndex = Zonas.getIndex();
+        //CREO UN OBJETO DE TIPO ArrayList<ArchTextoPlano>
+        ListaIndex = NIndex.getArchivos_Index();
+
+        //SE AGREGA EL ARCHIVO EN LA POSICIÓN indice de Workspace
+        ListaIndex.add(LosArchivos.get(indice));
+        //SE ACTUALIZA LA ZONA INDEX
+        NIndex.setArchivos_Index(ListaIndex);
+
+        //SE ACTUALIZA LA ZONA DE TRABAJO
+        Zonas.setIndex(NIndex);
+        // QUE TRANSFERIR DISMINUYA EN 1 SIGNIFICA QUE YA SE PASO UN
+        //ARCHIVO DE WORKPSACE A INDEX
+        
+        rep.setZonas(Zonas);
+
+        return rep;
+        
+        
+    
+    }
+    
+    
+    
+    
+    
+    
     
     /**
      * 
@@ -179,7 +236,7 @@ public class GitController {
      * @param rep
      * @return String
      */
-    //descripcion metodo: se obtiene la cantidad de archivos en workspace
+    //descripcion metodo: se obtiene un string con todos los archivos de workspace
     public String GetAmountFiles(ZonasDeTrabajo Zonas,Repositorio rep) {
         String A = "";
         Workspace workspace = Zonas.getWorkspace();
@@ -190,6 +247,16 @@ public class GitController {
         return numCadena;
     }
     
+    /**
+     * 
+     * @param Zonas
+     * @param rep
+     * @param AmountFiles
+     * @return Repositorio
+     * @throws AmountFilesException
+     * @throws AmountFilesNotIntException 
+     */
+    //descripcion: metodo que revisa que la cantidad de archivos a ingresar al index sea menor que la cant de archivos en workspace
     public Repositorio VerifAmountFiles(ZonasDeTrabajo Zonas,Repositorio rep,int AmountFiles) throws AmountFilesException, AmountFilesNotIntException{
         //se procede a obtener la cantidad de archivos de workspace
         //SE CREA UN OBJETO TEMPORAL DE TIPO WORKSPACE
@@ -216,6 +283,12 @@ public class GitController {
 
     }
     
+    /**
+     * 
+     * @param repositorio
+     * @return String
+     */
+    //descripcion: entrega como string los archivos enumerados de workspace
     public String gitFilesToTransfer(Repositorio repositorio){
         
         ZonasDeTrabajo Zonas = repositorio.getZonas();
@@ -226,5 +299,21 @@ public class GitController {
     
     
     }
+    
+    public Repositorio DeleteFilesRep(ZonasDeTrabajo Zonas,Repositorio rep){
+        
+        //se obtiene la lista de archivos de index
+        Index index = Zonas.getIndex();
+        ArrayList<ArchTextoPlano> N_INDEX = index.getArchivos_Index();
+        ArrayList<ArchTextoPlano> N_INDEX2 = Index.EliminarArchRep(N_INDEX);
+        Index IndexTemporal = Zonas.getIndex();
+
+        IndexTemporal.setArchivos_Index(N_INDEX2);
+        Zonas.setIndex(IndexTemporal);
+        rep.setZonas(Zonas);
+        return rep;
+    
+    }
+
     
 }

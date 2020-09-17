@@ -5,6 +5,8 @@
  */
 package git_20056001_munozcarreno;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author CLundstedt
@@ -47,6 +49,7 @@ public class WindowTranferFilesCap2 extends javax.swing.JFrame {
         BTN_TransferFiles = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        BTN_ReadyForBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Transferencia de archivos");
@@ -96,28 +99,43 @@ public class WindowTranferFilesCap2 extends javax.swing.JFrame {
 
         jLabel3.setText("Archivos disponibles:");
 
+        BTN_ReadyForBack.setText("Listo");
+        BTN_ReadyForBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EventClickButtonReadyActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(TF_ShowAmountFiles, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(TF_PutNumberFile, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addComponent(BTN_TransferFiles, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addContainerGap(64, Short.MAX_VALUE))
-            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(TF_ShowAmountFiles, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(27, 27, 27)
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(TF_PutNumberFile, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(BTN_TransferFiles, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(13, 13, 13))))
+                            .addComponent(jLabel3))
+                        .addGap(0, 6, Short.MAX_VALUE))
+                    .addComponent(BTN_ReadyForBack, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,18 +144,22 @@ public class WindowTranferFilesCap2 extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(TF_ShowAmountFiles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TF_PutNumberFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(31, 31, 31)
+                        .addComponent(BTN_TransferFiles, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BTN_TransferFiles, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TF_PutNumberFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BTN_ReadyForBack, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -163,14 +185,50 @@ public class WindowTranferFilesCap2 extends javax.swing.JFrame {
         //transferidos
         
         // se obtiene el numero ingresado por el usuario
-        String NumberChoose = this.TF_PutNumberFile.getText();
+        String NumberChoose1 = this.TF_PutNumberFile.getText();
+        int NumberChoose2 = Integer.parseInt(this.TF_PutNumberFile.getText());
+        int NumberChooseNew = NumberChoose2 - 1;
+        
+        //se modifica el contador de archivos restantes
+        int newAmountFiles = Integer.parseInt(this.TF_ShowAmountFiles.getText());
+        newAmountFiles -=1;
+        String NewAmountFiles = String.valueOf(newAmountFiles);
+        this.TF_ShowAmountFiles.setText(NewAmountFiles);
+        
+        
+        
+        
+        //se realiza el try catch
+        try{
+            WindowTranferFilesCap2 WindowLoop = new WindowTranferFilesCap2(gitController.gitAddCaso2(repositorio.getZonas(), repositorio, AmountFiles, NumberChoose2),gitController,AmountFiles-1);
+            WindowLoop.setVisible(true);
+            this.setVisible(false);
+        
+        }
+        catch(FilesTransferedException e){
+            JOptionPane.showMessageDialog(this, "Todos los archivos fueron ingresados, por favor presaione el botón 'Listo'.", "Error de datos ingresados", JOptionPane.ERROR_MESSAGE);
+        }
+        catch(NumberFileOutLimitException e){
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese un número de archivo válido.", "Error de datos ingresados", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        
         
         
         
     }//GEN-LAST:event_EventClickTransferFilesActionPerformed
 
+    private void EventClickButtonReadyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickButtonReadyActionPerformed
+        //SE PROCEDE A ACTUALIZAR EL REPOSITORIO ELIMINANDO LOS ARCHIVOS REPETIVOS DE INDEX A TRAVES
+        //DE gitController
+        PrincipalWindow KeepWindow5 = new PrincipalWindow(gitController.DeleteFilesRep(repositorio.getZonas(), repositorio),gitController);
+        KeepWindow5.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_EventClickButtonReadyActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BTN_ReadyForBack;
     private javax.swing.JButton BTN_TransferFiles;
     private javax.swing.JTextArea TA_FilesAvailables;
     private javax.swing.JTextField TF_PutNumberFile;
