@@ -110,7 +110,7 @@ public class Workspace {
         int i;
         String j;
         String parte1;
-        String parentesis = ")";
+        String parentesis = ") ";
         ArchTextoPlano arch;
         String NameArchivo;
         String NumyA;

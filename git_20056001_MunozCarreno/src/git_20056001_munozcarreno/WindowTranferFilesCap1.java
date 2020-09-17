@@ -5,6 +5,8 @@
  */
 package git_20056001_munozcarreno;
 
+import java.awt.Color;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
 /**
@@ -70,6 +72,11 @@ public class WindowTranferFilesCap1 extends javax.swing.JFrame {
         TF_PutAmountFiles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EventPutAmountFilesActionPerformed(evt);
+            }
+        });
+        TF_PutAmountFiles.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                EventPutAmountFilesKeyTyped(evt);
             }
         });
 
@@ -146,7 +153,7 @@ public class WindowTranferFilesCap1 extends javax.swing.JFrame {
     }//GEN-LAST:event_EventPutAmountFilesActionPerformed
 
     private void EventAceptAmountFiles(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventAceptAmountFiles
-         // SE PROCE A INGRESAR LA CANTIDAD DE ARCHIVOS A TRANSFERIR
+         // SE PROCEDE A INGRESAR LA CANTIDAD DE ARCHIVOS A TRANSFERIR
         int AmountFiles = Integer.parseInt(this.TF_PutAmountFiles.getText());
         
         //Ahora se procede a abrir la siguient ventana para ingresar los archivos
@@ -157,12 +164,17 @@ public class WindowTranferFilesCap1 extends javax.swing.JFrame {
         }
         catch(AmountFilesException e){
             JOptionPane.showMessageDialog(this, "Por favor, ingrese una cantidad de archivos válida.", "Error de datos ingresados", JOptionPane.ERROR_MESSAGE);
+            this.TF_PutAmountFiles.setBorder(BorderFactory.createLineBorder(Color.red));
         }
         catch(AmountFilesNotIntException e){
             JOptionPane.showMessageDialog(this, "Por favor, ingrese un número.", "Error de datos ingresados", JOptionPane.ERROR_MESSAGE);
         }
         
     }//GEN-LAST:event_EventAceptAmountFiles
+
+    private void EventPutAmountFilesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_EventPutAmountFilesKeyTyped
+        this.TF_PutAmountFiles.setBorder(BorderFactory.createLoweredSoftBevelBorder());
+    }//GEN-LAST:event_EventPutAmountFilesKeyTyped
 
     
 

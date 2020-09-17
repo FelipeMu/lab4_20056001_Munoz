@@ -5,6 +5,8 @@
  */
 package git_20056001_munozcarreno;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author CLundstedt
@@ -266,6 +268,10 @@ public class PrincipalWindow extends javax.swing.JFrame {
     //EVENTOS RELACIONADOS CON LOS ESTADOS DE LAS ZONAS DE TRABAJO
     
     
+    /**
+     * 
+     * @param evt 
+     */
     private void EventClickWActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickWActionPerformed
         // AQUI SE PROCEDE A MOSTRAR LA INFORMACIÓN DE LA ZONA WORKSPACE
         this.TF_NameZome.setText("Workspace");
@@ -275,6 +281,10 @@ public class PrincipalWindow extends javax.swing.JFrame {
         this.TA_InfoZones.setText(StatusW);
     }//GEN-LAST:event_EventClickWActionPerformed
 
+    /**
+     * 
+     * @param evt 
+     */
     private void EventClickIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickIActionPerformed
         // AQUI SE PROCEDE A MOSTRAR LA INFORMACIÓN DE LA ZONA INDEX
         // AQUI SE PROCEDE A MOSTRAR LA INFORMACIÓN DE LA ZONA WORKSPACE
@@ -297,7 +307,10 @@ public class PrincipalWindow extends javax.swing.JFrame {
     
     //EVENTOS RELACIONADOS CON LA ENTRADA DE DATOS
     
-    
+    /**
+     * 
+     * @param evt 
+     */
     private void EventClickNewFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickNewFileActionPerformed
         //se debe abrir una ventana temporal para ingresar nombre de autor y archivo
         //SE CREA UN OBJETO DE TIPO WindowNewFile
@@ -314,6 +327,10 @@ public class PrincipalWindow extends javax.swing.JFrame {
         
     }//GEN-LAST:event_EventClickNewFileActionPerformed
 
+    /**
+     * 
+     * @param evt 
+     */
     private void EventAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventAddActionPerformed
         // No es necesario abrir ninguna ventana
         //solo hace falta modificar el repotorio y algun mensaje de informacion
@@ -323,28 +340,46 @@ public class PrincipalWindow extends javax.swing.JFrame {
         WindowHowSendFiles Windowcapa1 = new WindowHowSendFiles(repositorio,gitController);
         Windowcapa1.setVisible(true);
         this.setVisible(false);
-        
-        /*
-        PrincipalWindow KeepWindow3 = new PrincipalWindow(gitController.gitAdd(repositorio.getZonas(), repositorio),gitController);
-        KeepWindow3.setVisible(true);
-        this.setVisible(false);
-        
-        */
-        
-        
-        
+   
     }//GEN-LAST:event_EventAddActionPerformed
 
+    /**
+     * 
+     * @param evt 
+     */
     private void EventCommitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventCommitActionPerformed
-        // TODO add your handling code here:
+        // Se procede a abrir la ventana para ingresar un commit
+        this.TA_InfoZones.setText(null);
+        WindowImputCommit WindowCommit = new WindowImputCommit(repositorio,gitController);
+        WindowCommit.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_EventCommitActionPerformed
 
+    /**
+     * 
+     * @param evt 
+     */
     private void EventPushActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventPushActionPerformed
-        // TODO add your handling code here:
+        // Se realiza el comando Push:
+        
+        
+        PrincipalWindow KeepWindow7 = new PrincipalWindow(gitController.gitPush(repositorio.getZonas(),repositorio),gitController); 
+        JOptionPane.showMessageDialog(this, "Los commits se han transferido de manera correcta a Remote Repository.", "Push", JOptionPane.INFORMATION_MESSAGE);
+        KeepWindow7.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_EventPushActionPerformed
 
+    /**
+     * 
+     * @param evt 
+     */
     private void EventPullActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventPullActionPerformed
-        // TODO add your handling code here:
+        // se realiza el comando pull
+        
+        PrincipalWindow KeepWindow8 = new PrincipalWindow(gitController.gitPull(repositorio.getZonas(),repositorio),gitController); 
+        JOptionPane.showMessageDialog(this, "Los commits se han traido de forma correcta.", "Pull", JOptionPane.INFORMATION_MESSAGE);
+        KeepWindow8.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_EventPullActionPerformed
 
     /**

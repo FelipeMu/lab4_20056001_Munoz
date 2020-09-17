@@ -6,6 +6,8 @@
 package git_20056001_munozcarreno;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 /**
  *
@@ -149,8 +151,17 @@ public class GitController {
         rep.setZonas(Zonas);
         return rep;
 
-    } 
-   
+    }   
+   /**
+    * 
+    * @param Zonas
+    * @param rep
+    * @param AmountFilesTT
+    * @param NumberChoose
+    * @return Repositorio
+    * @throws FilesTransferedException
+    * @throws NumberFileOutLimitException 
+    */
     public Repositorio gitAddCaso2 (ZonasDeTrabajo Zonas,Repositorio rep, int AmountFilesTT,int NumberChoose) throws FilesTransferedException, NumberFileOutLimitException{
         //GENERO UN OBJETO DE TIPO ArchTextoPlano
         Workspace ZonaWorkspace = Zonas.getWorkspace();
@@ -158,10 +169,6 @@ public class GitController {
         ArrayList<ArchTextoPlano> LosArchivos = ZonaWorkspace.getArchivos_Workspace();
         
         ArrayList<ArchTextoPlano> ListaIndex;
-        
-        
-        
-        
         
         //SE CREA UN OBJETO TEMPORAL DE TIPO WORKSPACE
         Workspace WorkspaceTemp = Zonas.getWorkspace();
@@ -174,9 +181,9 @@ public class GitController {
         }
         
         if(NumberChoose < 0 || NumberChoose > cantidadArch){
+            System.out.printf("\t\t\t\t\t entro a un catchhhhhhhhhhhhh\n");
             throw new NumberFileOutLimitException();
         }
-        
         
         int indice = NumberChoose - 1;
         //AHORA SE DEBE TRANFERIR EL ARCHIVO EN LA POSICION INDICE AL INDEX
@@ -198,17 +205,7 @@ public class GitController {
         rep.setZonas(Zonas);
 
         return rep;
-        
-        
-    
     }
-    
-    
-    
-    
-    
-    
-    
     /**
      * 
      * @param repositorio
@@ -221,8 +218,138 @@ public class GitController {
         String archivosI = i.toStringInterfaz();
 
         return archivosI;
+    }
     
     
+    public Repositorio gitCommit(ZonasDeTrabajo Zonas, Repositorio rep,String Author, String Message) throws InvalidCommitException{
+    
+        if(Author == null || Author.isEmpty() || Author.trim().isEmpty() || Message == null || Message.isEmpty() || Message.trim().isEmpty()){
+            throw new InvalidCommitException();
+        }
+        
+        // se procede con la ejecucion del comando
+        
+        String FechaCommit;
+        FechaCommit = Commit.obtenerFecha();
+        //SE PROCEDE A OBTENER UN OBJETO DE TIPO Index
+        Index index = Zonas.getIndex();
+        //SE OBTIENE LA LISTA DE ARCHIVOS
+        ArrayList<ArchTextoPlano> ArchivosIndex = index.getArchivos_Index();
+        
+        //SE PROCEDE A CREAR UN OBJETO DE TIPO Commit
+        Commit commit = new Commit(Author,FechaCommit,Message,ArchivosIndex);
+
+        //SE OBTIENE UN OBJETO TIPO LocalRepository
+        LocalRepository localRep = Zonas.getLocalRepository();
+        
+        //SE OBTIENE LA LISTA DE COMMIT DEL OBJETO localRep
+        ArrayList<Commit> ListaCommits = localRep.getCommitsEnLocal();
+        
+        //SE AGREGA EL NUEVO COMMIT
+        ListaCommits.add(commit);
+
+        //AHORA SE PROCEDE A CREAR UN NUEVO OBJETO DE TIPO INDEX Y AGREGARLO A 
+        Index nuevo_index = new Index();
+        //SE ACTUALIZA LA ZONA localRep
+        localRep.setCommitsEnLocal(ListaCommits); 
+        
+         //SE ACTUALIZA LA ZONA DE TRABAJO
+        Zonas.setLocalRepository(localRep);
+        
+        //SE OBTIENE EL OBJETO LocalRepositorty
+        LocalRepository L = Zonas.getLocalRepository();
+        //SE CREA UN OBJETO DE TIPO ArrayList<Commit>
+        ArrayList<Commit> commitsARevisar = L.getCommitsEnLocal();
+        
+         
+        //SE CREA UN OBJETO DE TIPO ArrayList<Commit>
+        ArrayList<Commit> nuevaListaC = new ArrayList<>();
+        //EN nuevaLista SE ALMACENA LA LISTA DE COMMITS PERTENECIENTE A LA
+        //ZONA LOCAL REPOSITORY (CON COMMMITS UNICOS)
+        nuevaListaC = Commit.BorrarCommitRep(commitsARevisar);
+        
+        //SE CREA UN NUEVO OBJETO DE TIPO LocalRepository
+        LocalRepository LocalDef = new LocalRepository();
+        //SE ACTUALIZA LA LISTA DE COMMITS DEL OBJETO ANTERIOR
+        LocalDef.setCommitsEnLocal(nuevaListaC);
+        
+        //SE ACTUALIZA LA ZONA DE TRABAJO CON RESPECTO A LA ZONA INDEX
+        Zonas.setIndex(nuevo_index);
+        //SE ACTUALIZA LA ZONA DE TRABAJO CON RESPECTO A LA ZONA LOCAL
+        //REPOSITORY
+        Zonas.setLocalRepository(LocalDef);
+        
+        rep.setZonas(Zonas);
+        return rep;
+    }
+    
+    
+    public Repositorio gitPush(ZonasDeTrabajo Zonas, Repositorio rep){
+    
+        //SE PROCEDE A OBTENER EL OBJETO DE TIPO localRepository 
+        LocalRepository local = Zonas.getLocalRepository();
+        //SE OBTIENE LOS COMMIT DEL OBJETO local
+        ArrayList<Commit> commitDeLocal = local.getCommitsEnLocal();
+         
+        //SE OBTIENE EL OBJETO UN OBJETO RemoteRepository
+        RemoteRepository remote = Zonas.getRemoteRepository();
+        
+        //SE CDEFINE UN OBJETO DE TIPO ArrayList<Commits>
+        ArrayList<Commit> commitDeRemote = remote.getCommitsEnRemote();
+        
+        //SE CREA UN OBJETO DE TIPO ArrayList<Commit>
+        ArrayList<Commit> NuevoConjuntoCommits = new ArrayList<>();
+        
+        //SE PROCEDE A UNIR LOS COMMITS DE LOCAL REPOSITORY Y LOCAL REPOSITORY
+        NuevoConjuntoCommits = Commit.UnirConjuntoDeCommits(commitDeLocal, commitDeRemote);
+        //SE CREA UN OBJETO DE TIPO ArrayList<Commit>
+        ArrayList<Commit> NuevoConjuntoCommits2 = new ArrayList<>();
+        //SE PROCEDE A ELIMINAR LOS REPETIDOS
+        NuevoConjuntoCommits2 = Commit.BorrarCommitRep(NuevoConjuntoCommits);
+
+        
+        // SE CREA UN NUEVO OBJETO DE TIPO RemoteRepository
+        RemoteRepository remoteFinal = new RemoteRepository();
+        //SE ACTUALIZA LA ZONA remtoeFinal
+        remoteFinal.setCommitsEnRemote(NuevoConjuntoCommits2);
+        ///SE ACTUALIZA LA ZONA DE TRABAJO
+        Zonas.setRemoteRepository(remoteFinal);
+        rep.setZonas(Zonas);
+        return rep;
+    
+    }
+    
+    public Repositorio gitPull(ZonasDeTrabajo Zonas,Repositorio rep){
+        
+        //SE PROCEDE A CREAR UN OBJETO DE TIPO ArrayList<ArchTextoPlano> PARA
+        //GUARDAR TODOS LOS ARCHIVOS QUE EXISTEN EN REMOTE REPOSITORY
+        ArrayList<ArchTextoPlano> TodosLosArchivosR= new ArrayList<>();
+        
+        //SE OBTIENE UN  OBJETO DE TIPO RemoteRepsitory
+        RemoteRepository remote = Zonas.getRemoteRepository();
+        //SE OBTIENE LA LISTA DE COMMIT DEL OBJETO remote (instruccion anterior)
+        ArrayList<Commit> CommitsRemote = remote.getCommitsEnRemote();
+        
+        //SE OBTIENE UNA LISTA CON TODOS LOS ARCHIVOS DE REMOTE REPOSITORY
+        TodosLosArchivosR = RemoteRepository.ObtenerArchivosDeRemote(CommitsRemote);
+        
+        //SE PROCEDE A ELIMINAR LOS REPETIDOS
+        
+        //SE CREA UN NUEVO ONEJTO TIPO ArrayList<ArchTextoPlano>
+        ArrayList<ArchTextoPlano> NuevosArchivosUnicos = new ArrayList<>();
+        
+        //SE OBTIENE UNA LISTA DE ARCHIVOS SIN REPETICIONES
+        NuevosArchivosUnicos = ArchTextoPlano.EliminarArchRep(TodosLosArchivosR);
+        
+        //SE ACTUALIZA LA ZONA WORKSPACE
+        Workspace workspace = Zonas.getWorkspace();
+        //SE ACTUALIZA LA ZONA WORKSPACE
+        workspace.setArchivos_Workspace(NuevosArchivosUnicos);
+        
+        //SE ACTUALIZA LA ZONA DE TRABAJO
+        Zonas.setWorkspace(workspace);
+        rep.setZonas(Zonas);
+        return rep;
     }
     
     
@@ -275,12 +402,8 @@ public class GitController {
         
         if(AmountFiles != (int)AmountFiles){
             throw new AmountFilesNotIntException();
-        }
-        
-        
-        return rep;
-        
-
+        } 
+        return rep;       
     }
     
     /**
@@ -300,7 +423,12 @@ public class GitController {
     
     }
     
-    public Repositorio DeleteFilesRep(ZonasDeTrabajo Zonas,Repositorio rep){
+    public Repositorio DeleteFilesRep(ZonasDeTrabajo Zonas,Repositorio rep,int AmountFiles) throws AmountFilesStillPositiveException{
+        if(AmountFiles > 0){
+         throw new AmountFilesStillPositiveException();
+        }
+        
+        
         
         //se obtiene la lista de archivos de index
         Index index = Zonas.getIndex();
@@ -314,6 +442,6 @@ public class GitController {
         return rep;
     
     }
-
     
+   
 }

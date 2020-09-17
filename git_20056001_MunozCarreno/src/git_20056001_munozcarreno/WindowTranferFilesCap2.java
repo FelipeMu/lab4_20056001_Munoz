@@ -5,6 +5,9 @@
  */
 package git_20056001_munozcarreno;
 
+import java.awt.Color;
+import java.util.InputMismatchException;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
 /**
@@ -87,6 +90,11 @@ public class WindowTranferFilesCap2 extends javax.swing.JFrame {
         TF_PutNumberFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EventClickPutNumberFileActionPerformed(evt);
+            }
+        });
+        TF_PutNumberFile.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                EventPutNumberFileKeyTyped(evt);
             }
         });
 
@@ -189,28 +197,45 @@ public class WindowTranferFilesCap2 extends javax.swing.JFrame {
         int NumberChoose2 = Integer.parseInt(this.TF_PutNumberFile.getText());
         int NumberChooseNew = NumberChoose2 - 1;
         
+        
+        
         //se modifica el contador de archivos restantes
+        /*
         int newAmountFiles = Integer.parseInt(this.TF_ShowAmountFiles.getText());
         newAmountFiles -=1;
         String NewAmountFiles = String.valueOf(newAmountFiles);
         this.TF_ShowAmountFiles.setText(NewAmountFiles);
-        
+        */
         
         
         
         //se realiza el try catch
         try{
+            //Se setea la cantidad de archivos a transferir
+            int newAmountFiles = Integer.parseInt(this.TF_ShowAmountFiles.getText());
+            newAmountFiles -=1;
+            /*
+            String NewAmountFiles = String.valueOf(newAmountFiles);
+            this.TF_ShowAmountFiles.setText(NewAmountFiles);
+            */
             WindowTranferFilesCap2 WindowLoop = new WindowTranferFilesCap2(gitController.gitAddCaso2(repositorio.getZonas(), repositorio, AmountFiles, NumberChoose2),gitController,AmountFiles-1);
+            
+            String NewAmountFiles = String.valueOf(newAmountFiles);
+            this.TF_ShowAmountFiles.setText(NewAmountFiles);
+            
             WindowLoop.setVisible(true);
             this.setVisible(false);
         
         }
         catch(FilesTransferedException e){
             JOptionPane.showMessageDialog(this, "Todos los archivos fueron ingresados, por favor presaione el botón 'Listo'.", "Error de datos ingresados", JOptionPane.ERROR_MESSAGE);
+            this.TF_PutNumberFile.setBorder(BorderFactory.createLineBorder(Color.red));
         }
         catch(NumberFileOutLimitException e){
             JOptionPane.showMessageDialog(this, "Por favor, ingrese un número de archivo válido.", "Error de datos ingresados", JOptionPane.ERROR_MESSAGE);
+            this.TF_PutNumberFile.setBorder(BorderFactory.createLineBorder(Color.red));
         }
+        
         
         
         
@@ -218,13 +243,27 @@ public class WindowTranferFilesCap2 extends javax.swing.JFrame {
         
     }//GEN-LAST:event_EventClickTransferFilesActionPerformed
 
+    /**
+     * 
+     * @param evt 
+     */
     private void EventClickButtonReadyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickButtonReadyActionPerformed
         //SE PROCEDE A ACTUALIZAR EL REPOSITORIO ELIMINANDO LOS ARCHIVOS REPETIVOS DE INDEX A TRAVES
         //DE gitController
-        PrincipalWindow KeepWindow5 = new PrincipalWindow(gitController.DeleteFilesRep(repositorio.getZonas(), repositorio),gitController);
-        KeepWindow5.setVisible(true);
-        this.setVisible(false);
+        try{
+            PrincipalWindow KeepWindow5 = new PrincipalWindow(gitController.DeleteFilesRep(repositorio.getZonas(), repositorio,AmountFiles),gitController);
+            JOptionPane.showMessageDialog(this, "Se han tranferidos los archivos correctamente", "Transferencia completada", JOptionPane.INFORMATION_MESSAGE);
+            KeepWindow5.setVisible(true);
+            this.setVisible(false);
+        }
+        catch(AmountFilesStillPositiveException e){
+            JOptionPane.showMessageDialog(this, "Aún existen archivos por transferir, por favor transfiera la cantidad de archivos restantes.", "Error de acción ejecutada", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_EventClickButtonReadyActionPerformed
+
+    private void EventPutNumberFileKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_EventPutNumberFileKeyTyped
+        this.TF_PutNumberFile.setBorder(BorderFactory.createLoweredSoftBevelBorder());
+    }//GEN-LAST:event_EventPutNumberFileKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
