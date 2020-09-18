@@ -31,10 +31,9 @@ public class RemoteRepository {
     
     //METODOS
     
-    // descripcion metodo: El metodo tiene como objetivo obtener todos los archivos de cada
-    // commit de la lista ingresada ListaCommits (de tipo ArrayList<Commit>)
+    
     /**
-     * SELECTOR
+     * El metodo tiene como objetivo obtener todos los archivos de cada commit de la lista ingresada ListaCommits (de tipo ArrayList<Commit>)
      * @param ListaCommits
      * @return ArrayList
      */
@@ -96,7 +95,11 @@ public class RemoteRepository {
     
     
     
-    
+    /**
+     * METODO QUE RETORNA UNA CADENA DE STRING CON LOS ULTIMOS 3 COMMIT DE REMOTE, MOSTRANDO MENSAJE Y ARCHIVOS VINCULADOS
+     * @param Zonas
+     * @return String
+     */
     public String toStringInterfaz(ZonasDeTrabajo Zonas) {
         
         
@@ -153,11 +156,11 @@ public class RemoteRepository {
             
             //SE CONCATENA EL STRING PalabraCommit y NumCommit
             CommitNumero = PalabraCommit.concat(NumCommit);
-            CommitNumero = CommitNumero.concat(": ");
+            CommitNumero = CommitNumero.concat(":\nMensaje: ");
             
             //SE CONCATENA CON EL MENSAJE DESCRIPTIVO
             CommitNumero = CommitNumero.concat(C.getMensaje());
-            parte1 = CommitNumero.concat("\n\n");
+            parte1 = CommitNumero.concat("\nArchivos:\n");
  
            //SE OBTIENE LA LISTA DE ARCHIVOS DEL COMMIT
             listaArchivos = C.getArchivosCommit();
@@ -175,6 +178,7 @@ public class RemoteRepository {
                 archivos = archivos.concat("\n"); 
             }
             parte1 = parte1.concat(archivos);
+            parte1 = parte1.concat("\n");
             parteF = parteF.concat(parte1);
             
         

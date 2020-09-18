@@ -26,8 +26,7 @@ public class MainWindow extends javax.swing.JFrame {
         initComponents();
         this.gitController = gitController;
         //this.COMANDOS = COMANDOS;
-        this.setLocationRelativeTo(null);
-      
+        this.setLocationRelativeTo(null); 
     }
 
     /**

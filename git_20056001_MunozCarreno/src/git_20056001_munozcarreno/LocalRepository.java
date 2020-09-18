@@ -56,10 +56,13 @@ public class LocalRepository {
     
     
     
-    
+    /**
+     * METODO QUE RETORNA UN CADENA DE STRING CON LOS ULTIMOS 3  COMMIT DE LOCAL, MOSTRANDO MENSAJE Y ARCHIVOS
+     * @param Zonas
+     * @return String
+     */
     public String toStringInterfaz(ZonasDeTrabajo Zonas) {
-        
-        
+              
         //SE CREA VARIABLE PARA ALMACENAR LA CANTIDAD DE COMMIT ALMACENADOS
         int cantCommits;
         //VARIABLE PARA EL NUMERO MAXIMO DE COMMITS
@@ -113,11 +116,11 @@ public class LocalRepository {
             
             //SE CONCATENA EL STRING PalabraCommit y NumCommit
             CommitNumero = PalabraCommit.concat(NumCommit);
-            CommitNumero = CommitNumero.concat(": ");
+            CommitNumero = CommitNumero.concat(":\nMensaje: ");
             
             //SE CONCATENA CON EL MENSAJE DESCRIPTIVO
             CommitNumero = CommitNumero.concat(C.getMensaje());
-            parte1 = CommitNumero.concat("\n\n");
+            parte1 = CommitNumero.concat("\nArchivos:\n");
  
            //SE OBTIENE LA LISTA DE ARCHIVOS DEL COMMIT
             listaArchivos = C.getArchivosCommit();
@@ -135,20 +138,104 @@ public class LocalRepository {
                 archivos = archivos.concat("\n"); 
             }
             parte1 = parte1.concat(archivos);
+            parte1 = parte1.concat("\n");
             parteF = parteF.concat(parte1);
             
-        
-           
-            
+
             i+=1;
             max-=1;
             cantCommits-=1;
         }
-        return parteF;
-        
-        
-        
+        return parteF;   
     }
     
     
+    public String toStringInterfaz5c(ZonasDeTrabajo Zonas) {
+        
+        
+        //SE CREA VARIABLE PARA ALMACENAR LA CANTIDAD DE COMMIT ALMACENADOS
+        int cantCommits;
+        //VARIABLE PARA EL NUMERO MAXIMO DE COMMITS
+        int max = 5;
+        
+        //SE PROCEDE A OBTENER EL OBJETO TIPO LocalRepository
+        LocalRepository L = Zonas.getLocalRepository();
+        //SE OBTIENE LA LISTA DE COMMITS
+        //SE CREA OBJETO PARA ALMACENAR LA LISTA DE COMMITS
+        ArrayList<Commit> commits = L.getCommitsEnLocal();
+       
+        
+        //LUEGO LA CANTIDAD DE COMMITS SE OBTIENE DE LA SIGUIENTE MANERA:
+        cantCommits = commits.size();
+ 
+        //ITERADOR
+        int i=1;
+        int j;
+        
+        
+        
+        //SE DEFINE OBJETO DE TIPO Commits
+        Commit C;
+        
+        //SE DEFINE OBJETO DE TIPO ArrayList<ArchTextolano>
+        ArrayList<ArchTextoPlano> listaArchivos =  new ArrayList<>();
+        
+        //SE DEFINE OBJETO TIPO ArchTextoPlano
+        ArchTextoPlano archivo;
+        
+        
+        //String con la palbra commit
+        String PalabraCommit = "Commit ";
+        ///string que almacenara el numero del commit
+        String NumCommit;
+        // string con el commit numero y mensaje
+        String parte1;
+        String parteF = "";
+        
+        // se almacena la contatenacion PalabraCommit y NumCommit
+        String CommitNumero;
+        
+        while(cantCommits>0 && max>0){
+            
+            //SE OBTIENE EL COMMIT EN LA POSICIÓN i
+            // ULTIMO COMMIT EN LOCAL
+            C = commits.get(cantCommits-1); 
+            
+            //SE OBTIENE ALAMCENA EL NUMERO DEL COMMIT EN NumCommit
+            NumCommit = String.valueOf(i);
+            
+            //SE CONCATENA EL STRING PalabraCommit y NumCommit
+            CommitNumero = PalabraCommit.concat(NumCommit);
+            CommitNumero = CommitNumero.concat(":\nMensaje: ");
+            
+            //SE CONCATENA CON EL MENSAJE DESCRIPTIVO
+            CommitNumero = CommitNumero.concat(C.getMensaje());
+            parte1 = CommitNumero.concat("\nArchivos:\n");
+ 
+           //SE OBTIENE LA LISTA DE ARCHIVOS DEL COMMIT
+            listaArchivos = C.getArchivosCommit();
+            
+            String nombreA;
+            String archivos="";
+            for(j=0;j<listaArchivos.size();j++){
+                //se obtiene una lista de un archivo
+                archivo = listaArchivos.get(j);
+                //se obtiene el nombre del archivo
+                nombreA = archivo.getNombre();
+                nombreA = "\t".concat(nombreA);
+                //se concatena el nombre del archivo con "archivos"
+                archivos = archivos.concat(nombreA);
+                //se concatena un \n al final del String archivos
+                archivos = archivos.concat("\n"); 
+            }
+            parte1 = parte1.concat(archivos);
+            parte1 = parte1.concat("\n");
+            parteF = parteF.concat(parte1);
+             
+            i+=1;
+            max-=1;
+            cantCommits-=1;
+        }
+        return parteF;  
+    } 
 }

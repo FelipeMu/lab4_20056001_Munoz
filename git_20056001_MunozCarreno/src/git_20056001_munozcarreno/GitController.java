@@ -335,6 +335,15 @@ public class GitController {
         return rep;
     }
     
+    
+    public String gitLog(ZonasDeTrabajo Zonas){
+        //ZonasDeTrabajo Zonas = repositorio.getZonas();
+        LocalRepository l = Zonas.getLocalRepository();
+        String commitsLocal = l.toStringInterfaz5c(Zonas);
+        return commitsLocal;
+    
+    }
+    
     ////////////////////////////////////////////////////////////////////////////
     //________METODOS RELACIONADOS CON LOS STATUS DE CADA ZONA__________________
     ////////////////////////////////////////////////////////////////////////////

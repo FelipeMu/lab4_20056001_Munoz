@@ -49,7 +49,7 @@ public class PrincipalWindow extends javax.swing.JFrame {
         BTN_Local = new javax.swing.JButton();
         BTN_Remote = new javax.swing.JButton();
         BTN_Index = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        BTN_NewFile = new javax.swing.JButton();
         BTN_add = new javax.swing.JButton();
         BTN_commit = new javax.swing.JButton();
         BTN_push = new javax.swing.JButton();
@@ -61,6 +61,7 @@ public class PrincipalWindow extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
         TF_NameZome = new javax.swing.JTextField();
+        BTN_log = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Repositorio");
@@ -111,8 +112,8 @@ public class PrincipalWindow extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("Nuevo Archivo");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        BTN_NewFile.setText("Nuevo Archivo");
+        BTN_NewFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EventClickNewFileActionPerformed(evt);
             }
@@ -168,6 +169,13 @@ public class PrincipalWindow extends javax.swing.JFrame {
         TF_NameZome.setCaretColor(new java.awt.Color(128, 128, 128));
         TF_NameZome.setEnabled(false);
 
+        BTN_log.setText("log");
+        BTN_log.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EventClickBTNLogActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -175,15 +183,18 @@ public class PrincipalWindow extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BTN_pull, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BTN_add, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BTN_push, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BTN_commit, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(BTN_pull, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BTN_push, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BTN_commit, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BTN_NewFile, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BTN_add, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(BTN_log, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -243,7 +254,9 @@ public class PrincipalWindow extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                        .addComponent(jButton5)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(BTN_NewFile)
+                            .addComponent(BTN_log))
                         .addGap(18, 18, 18)
                         .addComponent(BTN_add)
                         .addGap(18, 18, 18)
@@ -445,6 +458,19 @@ public class PrincipalWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_EventPullActionPerformed
 
+    
+    /**
+     * EVENTO VINCULADO AL BOTON "log", SE PROCEDE A MOSTRAR LOS ULTIMOS 5 COMMIT EN LOCAL REPOSITORY
+     * @param evt 
+     */
+    private void EventClickBTNLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickBTNLogActionPerformed
+        WindowFor5Commits Window5c = new WindowFor5Commits(repositorio,gitController,COMANDOS);
+        Window5c.setVisible(true);
+        this.setVisible(false);
+        
+        
+    }//GEN-LAST:event_EventClickBTNLogActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -453,15 +479,16 @@ public class PrincipalWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTN_Index;
     private javax.swing.JButton BTN_Local;
+    private javax.swing.JButton BTN_NewFile;
     private javax.swing.JButton BTN_Remote;
     private javax.swing.JButton BTN_Workspace;
     private javax.swing.JButton BTN_add;
     private javax.swing.JButton BTN_commit;
+    private javax.swing.JButton BTN_log;
     private javax.swing.JButton BTN_pull;
     private javax.swing.JButton BTN_push;
     private javax.swing.JTextArea TA_InfoZones;
     private javax.swing.JTextField TF_NameZome;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

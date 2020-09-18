@@ -107,7 +107,7 @@ public class WindowHowSendFiles extends javax.swing.JFrame {
         
         //SE VUELVE A LA VENTANA PRINCIPAL Y SE EJECUTA EL CONTROLADOR gitAdd1
         PrincipalWindow KeepWindow4 = new PrincipalWindow(gitController.gitAddCaso1(repositorio.getZonas(),repositorio),gitController,COMANDOS);
-        JOptionPane.showMessageDialog(this, "Se han transferido todos los commits de forma correcta a Remote Repository.", "Transferencia", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Se han transferido todos archivos satisfactoriamente.", "Transferencia completada", JOptionPane.INFORMATION_MESSAGE);
         KeepWindow4.setVisible(true);
         this.setVisible(false);    
     }//GEN-LAST:event_EventTranferAllFilesActionPerformed

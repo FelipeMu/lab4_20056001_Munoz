@@ -39,17 +39,21 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="BTN_pull" min="-2" pref="108" max="-2" attributes="0"/>
-                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jButton5" max="32767" attributes="0"/>
-                      <Component id="BTN_add" max="32767" attributes="0"/>
-                  </Group>
                   <Component id="jLabel5" alignment="0" min="-2" pref="177" max="-2" attributes="0"/>
-                  <Component id="BTN_push" alignment="0" min="-2" pref="108" max="-2" attributes="0"/>
-                  <Component id="BTN_commit" alignment="0" min="-2" pref="108" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="BTN_pull" alignment="0" max="32767" attributes="0"/>
+                          <Component id="BTN_push" alignment="0" max="32767" attributes="0"/>
+                          <Component id="BTN_commit" alignment="0" max="32767" attributes="0"/>
+                          <Component id="BTN_NewFile" alignment="0" max="32767" attributes="0"/>
+                          <Component id="BTN_add" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="BTN_log" min="-2" pref="113" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jSeparator4" min="-2" pref="50" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="32767" attributes="0"/>
+              <Component id="jSeparator4" min="-2" pref="227" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
@@ -121,7 +125,10 @@
                   <Group type="102" attributes="0">
                       <Component id="jLabel5" min="-2" pref="36" max="-2" attributes="0"/>
                       <EmptySpace pref="17" max="32767" attributes="0"/>
-                      <Component id="jButton5" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="BTN_NewFile" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="BTN_log" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Component id="BTN_add" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
@@ -239,7 +246,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EventClickIActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton5">
+    <Component class="javax.swing.JButton" name="BTN_NewFile">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nuevo Archivo"/>
       </Properties>
@@ -340,6 +347,14 @@
         </Property>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="BTN_log">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="log"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EventClickBTNLogActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

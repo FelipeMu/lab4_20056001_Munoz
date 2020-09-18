@@ -231,7 +231,7 @@ public class WindowTranferFilesCap2 extends javax.swing.JFrame {
         //DE gitController
         try{
             PrincipalWindow KeepWindow5 = new PrincipalWindow(gitController.DeleteFilesRep(repositorio.getZonas(), repositorio,AmountFiles),gitController,COMANDOS);
-            JOptionPane.showMessageDialog(this, "Se han tranferidos los archivos correctamente", "Transferencia completada", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Se han tranferido los archivos correctamente", "Transferencia completada", JOptionPane.INFORMATION_MESSAGE);
             KeepWindow5.setVisible(true);
             this.setVisible(false);
         }
