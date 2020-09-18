@@ -6,6 +6,7 @@
 package git_20056001_munozcarreno;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
@@ -17,15 +18,17 @@ public class WindowImputCommit extends javax.swing.JFrame {
 
     private Repositorio repositorio;
     private GitController gitController;
+    private ArrayList<String> COMANDOS;
     /**
      * Creates new form WindowImputCommit
      */
-    public WindowImputCommit(Repositorio repositorio, GitController gitController) {
+    public WindowImputCommit(Repositorio repositorio, GitController gitController,ArrayList<String> COMANDOS) {
         initComponents();
         //PANTALLA CENTRADA
         this.setLocationRelativeTo(null);
         this.repositorio = repositorio;
         this.gitController = gitController;
+        this.COMANDOS = COMANDOS;
     }
 
     /**
@@ -190,7 +193,7 @@ public class WindowImputCommit extends javax.swing.JFrame {
         String Message = this.TF_MessageCommit.getText();
         
         try{
-            PrincipalWindow KeepWindow6 = new PrincipalWindow(gitController.gitCommit(repositorio.getZonas(),repositorio,Author,Message),gitController);
+            PrincipalWindow KeepWindow6 = new PrincipalWindow(gitController.gitCommit(repositorio.getZonas(),repositorio,Author,Message),gitController,COMANDOS);
             JOptionPane.showMessageDialog(this, "Se ha realizado correctamente el commit.", "Commit creado", JOptionPane.INFORMATION_MESSAGE);
             KeepWindow6.setVisible(true);
             this.setVisible(false);

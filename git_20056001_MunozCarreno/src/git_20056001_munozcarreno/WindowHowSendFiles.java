@@ -5,6 +5,9 @@
  */
 package git_20056001_munozcarreno;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author CLundstedt
@@ -14,6 +17,7 @@ public class WindowHowSendFiles extends javax.swing.JFrame {
     
     private Repositorio repositorio;
     private GitController gitController;
+    private ArrayList<String> COMANDOS;
     /**
      * Creates new form WindowHowSendFiles
      */
@@ -22,12 +26,13 @@ public class WindowHowSendFiles extends javax.swing.JFrame {
      * @param repositorio
      * @param gitController 
      */
-    public WindowHowSendFiles(Repositorio repositorio, GitController gitController) {
+    public WindowHowSendFiles(Repositorio repositorio, GitController gitController,ArrayList<String> COMANDOS) {
         initComponents();
         //PANTALLA CENTRADA
         this.setLocationRelativeTo(null);
         this.repositorio = repositorio;
         this.gitController = gitController;
+        this.COMANDOS = COMANDOS;
     }
 
     /**
@@ -98,7 +103,8 @@ public class WindowHowSendFiles extends javax.swing.JFrame {
         
         
         //se vuelve a la pantalla principal y se ejecuta el controlador gitAddCaso1
-        PrincipalWindow KeepWindow4 = new PrincipalWindow(gitController.gitAddCaso1(repositorio.getZonas(),repositorio),gitController);
+        PrincipalWindow KeepWindow4 = new PrincipalWindow(gitController.gitAddCaso1(repositorio.getZonas(),repositorio),gitController,COMANDOS);
+        JOptionPane.showMessageDialog(this, "Se han transferido todos los commits de forma correcta a Remote Repository.", "Transferencia", JOptionPane.INFORMATION_MESSAGE);
         KeepWindow4.setVisible(true);
         this.setVisible(false);
         
@@ -110,7 +116,7 @@ public class WindowHowSendFiles extends javax.swing.JFrame {
         // LA CANTIDAD DE ARCHIVOS DISPONIBLES Y CUANTOS DESEA TRANFERIR
         
         //SE CREA LA NUEVA VENTANA
-        WindowTranferFilesCap1 w1 = new WindowTranferFilesCap1(repositorio,gitController);
+        WindowTranferFilesCap1 w1 = new WindowTranferFilesCap1(repositorio,gitController,COMANDOS);
         w1.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_EventTransferEspFilesActionPerformed

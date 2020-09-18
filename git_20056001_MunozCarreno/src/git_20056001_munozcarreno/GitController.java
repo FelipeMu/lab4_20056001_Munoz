@@ -51,15 +51,14 @@ public class GitController {
      */
     public Repositorio gitAgregarArchivo (String NameFile, String Content, ZonasDeTrabajo Zonas, Repositorio rep) throws DatasCreateFileInvalidException{
         
-        
-        
         if(NameFile == null || NameFile.isEmpty() || NameFile.trim().isEmpty() || Content == null || Content.isEmpty() || Content.trim().isEmpty()){
             throw new DatasCreateFileInvalidException();
         }
+        
+        
+        
+        
 
-        
-     
-        
         //EN CASO QUE LOS DATOS SEAN VALIDOS SE PROCEDE CON EL DESARROLLO
         //DEL PROGRAMA
         
@@ -85,8 +84,6 @@ public class GitController {
         //SE CREA UN NUEVO OBJETO DE TIPO ArrayList<ArchTextoPlano>
         ArrayList<ArchTextoPlano> Archivos_Actualizados = ArchTextoPlano.EliminarArchRep(ArchivosDelWorkspace);
        
-        
-        
         //SE ACTUALIZA LAS ZONA WORKSPACE
         Workspace NuevoWorkspace = new Workspace();
         NuevoWorkspace.setArchivos_Workspace(Archivos_Actualizados);
@@ -96,8 +93,6 @@ public class GitController {
         rep.setZonas(Zonas);
         System.out.printf("SE RETORNA LA NUEVA ZONA DEL METODO AGREGARARCHIVOS.\n");
         return rep;
-    
-    
     }
     
     /**
@@ -112,13 +107,9 @@ public class GitController {
         String archivosW = w.toStringInterfaz();
 
         return archivosW;
-    
-    
     }
     
-    
-    
-    
+     
     /**
      * 
      * @param Zonas
@@ -220,7 +211,15 @@ public class GitController {
         return archivosI;
     }
     
-    
+    /**
+     * 
+     * @param Zonas
+     * @param rep
+     * @param Author
+     * @param Message
+     * @return Repositorio
+     * @throws InvalidCommitException 
+     */
     public Repositorio gitCommit(ZonasDeTrabajo Zonas, Repositorio rep,String Author, String Message) throws InvalidCommitException{
     
         if(Author == null || Author.isEmpty() || Author.trim().isEmpty() || Message == null || Message.isEmpty() || Message.trim().isEmpty()){
@@ -283,7 +282,12 @@ public class GitController {
         return rep;
     }
     
-    
+    /**
+     * 
+     * @param Zonas
+     * @param rep
+     * @return Repositorio
+     */
     public Repositorio gitPush(ZonasDeTrabajo Zonas, Repositorio rep){
     
         //SE PROCEDE A OBTENER EL OBJETO DE TIPO localRepository 
@@ -319,6 +323,12 @@ public class GitController {
     
     }
     
+    /**
+     * 
+     * @param Zonas
+     * @param rep
+     * @return Repositorio
+     */
     public Repositorio gitPull(ZonasDeTrabajo Zonas,Repositorio rep){
         
         //SE PROCEDE A CREAR UN OBJETO DE TIPO ArrayList<ArchTextoPlano> PARA
@@ -351,6 +361,152 @@ public class GitController {
         rep.setZonas(Zonas);
         return rep;
     }
+    
+    /**
+     * 
+     * @param repositorio
+     * @param Zonas
+     * @return String 
+     */
+    public String gitStatusLocal(Repositorio repositorio, ZonasDeTrabajo Zonas){
+        //ZonasDeTrabajo Zonas = repositorio.getZonas();
+        LocalRepository l = Zonas.getLocalRepository();
+        String commitsLocal = l.toStringInterfaz(Zonas);
+        return commitsLocal;
+    }
+    
+    /**
+     * 
+     * @param repositorio
+     * @param Zonas
+     * @return String 
+     */
+    public String gitStatusRemote(Repositorio repositorio, ZonasDeTrabajo Zonas){
+        //ZonasDeTrabajo Zonas = repositorio.getZonas();
+        RemoteRepository r = Zonas.getRemoteRepository();
+        String commitsRemote = r.toStringInterfaz(Zonas);
+        return commitsRemote;
+    }
+    
+    
+    
+    public boolean gitComandosExternos(ArrayList<String> ListaComandos,String comando) throws ComandException{
+        if(!gitComandos(ListaComandos,comando)){
+            throw new ComandException();
+        
+        }
+        System.out.printf("\t\t\t\t\t SE RETORNA TRUE EN COMANDOS_EXTERNOS\n");
+        return true;
+    }
+    
+    
+    
+    
+    public boolean gitComandos(ArrayList<String> ListaComandos,String comando){
+        
+
+        boolean ejecutar = true;
+        //SE PROCEDE A VERIFICAR QUE EL COMANDO "comando" SELECCIONADO SEA VALIDO
+        
+        //COMANDO Add _____________________
+        
+        //STRING QUE ALMACENARA EL ULTIMO COMANDO EJECUTADO
+        String C;
+        
+        //ENTERO QUE ALMACENA EL TAMANO DE LA LISTA ListaComandos
+        int largo;
+        //CASO BORDE
+        if(ListaComandos.isEmpty() && comando.equals("CargarArchivosWorkspace->")){
+            
+            ejecutar = true;
+        }
+        
+        else{
+        
+            if(ListaComandos.isEmpty()){
+                ejecutar = false;
+            }
+            
+            else{
+                largo = ListaComandos.size();
+
+                //SE OBTIENE EL COMANDO (String)
+                C = ListaComandos.get(largo-1);
+
+
+                switch(comando){
+
+                    //COMANDO ADD
+                    case "CargarArchivosWorkspace->":
+                        if(ListaComandos.isEmpty() || C.equals("CargarArchivosWorkspace->") || C.equals("Add->") || C.equals("Commit->") || C.equals("Pull->") ){
+                            ejecutar = true;
+
+                        }
+                        else{
+                            ejecutar = false;
+                        }
+
+                        break;
+
+                    //COMANDO ADD    
+                    case "Add->":
+                        if(  C.equals("CargarArchivosWorkspace->") || C.equals("Add->") || C.equals("Commit->") || C.equals("Pull->")  ){
+                        ejecutar = true;
+
+                        }
+                        else{
+                            ejecutar = false;
+                        }
+                        break;
+
+                    //COMANDO COMMIT
+                    case "Commit->":
+                        if( C.equals("Add->") ){
+                        ejecutar = true;
+
+                        }
+                        else{
+                            ejecutar = false;
+                        }
+                        break;
+
+                    //COMANDO PUSH
+                    case "Push->":
+                        if( C.equals("Commit->") ){   
+                        ejecutar = true;
+
+                        }
+                        else{
+                            ejecutar = false;
+                        }
+                        break;
+
+                    //COMANDO PULL
+                    case "Pull->":
+                        if( C.equals("Push->") ){
+                        ejecutar = true;
+
+                        }
+                        else{
+                            ejecutar = false;
+                        }
+                        break;
+
+                }
+            }   
+        }
+        return ejecutar;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     ////////////////////////////////////////////////////////////////////////////

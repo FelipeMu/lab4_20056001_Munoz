@@ -6,6 +6,7 @@
 package git_20056001_munozcarreno;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
@@ -17,16 +18,18 @@ public class WindowNewFile extends javax.swing.JFrame {
 
     private Repositorio repositorio;
     private GitController gitController;
+    private ArrayList<String> COMANDOS;
     //JFrame parentWindow;
     /**
      * Creates new form WindowNewFile
      */
-    public WindowNewFile(Repositorio repositorio,GitController gitController) {
+    public WindowNewFile(Repositorio repositorio,GitController gitController,ArrayList<String> COMANDOS) {
         initComponents();
         this.setLocationRelativeTo(null);
         //this.parentWindow = parentWindow;
         this.repositorio=repositorio;
         this.gitController = gitController;
+        this.COMANDOS = COMANDOS;
         
     }
 
@@ -149,17 +152,16 @@ public class WindowNewFile extends javax.swing.JFrame {
          try{
           
          
-            PrincipalWindow KeepWindow2 = new PrincipalWindow(gitController.gitAgregarArchivo(NameFile, Content,repositorio.getZonas(),repositorio),gitController);
+            PrincipalWindow KeepWindow2 = new PrincipalWindow(gitController.gitAgregarArchivo(NameFile, Content,repositorio.getZonas(),repositorio),gitController,COMANDOS);
             KeepWindow2.setVisible(true);
             this.setVisible(false);
   
          }
          catch(DatasCreateFileInvalidException e){
-             
-             
              JOptionPane.showMessageDialog(this, "Por favor, rellene los recuadros indicados", "Error de datos", JOptionPane.ERROR_MESSAGE);
              
          }
+        
         
    
     }//GEN-LAST:event_EventClickSendDatasCreateFileActionPerformed

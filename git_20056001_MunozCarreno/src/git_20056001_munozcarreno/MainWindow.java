@@ -6,6 +6,7 @@
 package git_20056001_munozcarreno;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
@@ -17,12 +18,14 @@ public class MainWindow extends javax.swing.JFrame {
 
     //se instacia un obejto de tipo GitController
      private GitController gitController;
+     private ArrayList<String> COMANDOS = new ArrayList<>();;
     /**
      * Creates new form MainWindow
      */
     public MainWindow(GitController gitController) {
         initComponents();
         this.gitController = gitController;
+        //this.COMANDOS = COMANDOS;
         this.setLocationRelativeTo(null);
       
     }
@@ -199,7 +202,7 @@ public class MainWindow extends javax.swing.JFrame {
         
         try{
             
-            PrincipalWindow KeepWindow = new PrincipalWindow(this.gitController.gitInit(NameRep, Author),gitController);
+            PrincipalWindow KeepWindow = new PrincipalWindow(this.gitController.gitInit(NameRep, Author),gitController,COMANDOS);
             KeepWindow.setVisible(true);
             this.setVisible(false);
         }
@@ -245,7 +248,6 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTN_ApplyAuthorName;
     private javax.swing.JButton BTN_ApplyInit;

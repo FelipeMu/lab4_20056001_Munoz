@@ -5,6 +5,7 @@
  */
 package git_20056001_munozcarreno;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,13 +15,15 @@ import javax.swing.JOptionPane;
 public class PrincipalWindow extends javax.swing.JFrame {
     private Repositorio repositorio;
     private GitController gitController;
+    private ArrayList<String> COMANDOS;
     /**
      * Creates new form PrincipalWindow
      */
-    public PrincipalWindow(Repositorio repositorio,GitController gitController) {
+    public PrincipalWindow(Repositorio repositorio,GitController gitController,ArrayList<String> COMANDOS) {
         initComponents();
         this.repositorio = repositorio;
         this.gitController = gitController;
+        this.COMANDOS = COMANDOS;
         this.setLocationRelativeTo(null);
         this.TF_NameZome.setBorder(null);
     }
@@ -287,7 +290,6 @@ public class PrincipalWindow extends javax.swing.JFrame {
      */
     private void EventClickIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickIActionPerformed
         // AQUI SE PROCEDE A MOSTRAR LA INFORMACIÓN DE LA ZONA INDEX
-        // AQUI SE PROCEDE A MOSTRAR LA INFORMACIÓN DE LA ZONA WORKSPACE
         this.TF_NameZome.setText("Index");
         this.TF_NameZome.setBorder(null);
         this.TA_InfoZones.setText(null);
@@ -297,11 +299,23 @@ public class PrincipalWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_EventClickIActionPerformed
 
     private void EventClickLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickLActionPerformed
-        // TODO add your handling code here:
+        // AQUI SE PROCEDE A MOSTRAR LA INFORMACION DE LA ZONA LOCAL REPOSITORY:
+        this.TF_NameZome.setText("Local Rep.");
+        this.TF_NameZome.setBorder(null);
+        this.TA_InfoZones.setText(null);
+        String StatusL = gitController.gitStatusLocal(repositorio, repositorio.getZonas());
+        this.TA_InfoZones.setText(StatusL);
+        
+        
     }//GEN-LAST:event_EventClickLActionPerformed
 
     private void EventClickRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickRActionPerformed
-        // TODO add your handling code here:
+        // AQUI SE PROCEDE A MOSTRAR LA INFORMACION DE LA ZONA LOCAL REPOSITORY:
+        this.TF_NameZome.setText("Remote Rep.");
+        this.TF_NameZome.setBorder(null);
+        this.TA_InfoZones.setText(null);
+        String StatusR = gitController.gitStatusRemote(repositorio, repositorio.getZonas());
+        this.TA_InfoZones.setText(StatusR);
     }//GEN-LAST:event_EventClickRActionPerformed
 
     
@@ -315,14 +329,22 @@ public class PrincipalWindow extends javax.swing.JFrame {
         //se debe abrir una ventana temporal para ingresar nombre de autor y archivo
         //SE CREA UN OBJETO DE TIPO WindowNewFile
         this.TA_InfoZones.setText(null);
-        if(repositorio == null){
-            System.out.printf("EL REPOSITORIO ES NULL AWEONAOOOO.\n");
+        try{
+        
+            if(gitController.gitComandosExternos(COMANDOS, "CargarArchivosWorkspace->")){
+                COMANDOS.add("CargarArchivosWorkspace->");
+                WindowNewFile WindowForCreateFile = new WindowNewFile(repositorio,gitController,COMANDOS);
+                //LA CENTANA SE HACE VISIBLE PARA EL USUARIO
+                WindowForCreateFile.setVisible(true);
+                //this.dispose();
+                this.setVisible(false);
+            }
+            
         }
-        WindowNewFile WindowForCreateFile = new WindowNewFile(repositorio,gitController);
-        //LA CENTANA SE HACE VISIBLE PARA EL USUARIO
-        WindowForCreateFile.setVisible(true);
-        //this.dispose();
-        this.setVisible(false);
+        catch(ComandException e){
+            JOptionPane.showMessageDialog(this, "Para seguir cargando archivos a workspace, por favor realice un Pull", "Error de comando", JOptionPane.ERROR_MESSAGE);
+        }
+        
         
         
     }//GEN-LAST:event_EventClickNewFileActionPerformed
@@ -337,10 +359,19 @@ public class PrincipalWindow extends javax.swing.JFrame {
         
         // se vacia el text area de informacion de zonas de trabajo
         this.TA_InfoZones.setText(null);
-        WindowHowSendFiles Windowcapa1 = new WindowHowSendFiles(repositorio,gitController);
-        Windowcapa1.setVisible(true);
-        this.setVisible(false);
-   
+        
+        try{
+            if(gitController.gitComandosExternos(COMANDOS, "Add->")){
+                COMANDOS.add("Add->");
+                WindowHowSendFiles Windowcapa1 = new WindowHowSendFiles(repositorio,gitController,COMANDOS);
+                Windowcapa1.setVisible(true);
+                this.setVisible(false);
+            }
+        }
+        catch(ComandException e){
+            JOptionPane.showMessageDialog(this, "Si por casualidad realizo un Push, es necesario que realice un Pull para ejecutar le comando Add, si ese no es el caso, entonces agregue archivos a la zona workspace.", "Error de comando", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_EventAddActionPerformed
 
     /**
@@ -350,9 +381,18 @@ public class PrincipalWindow extends javax.swing.JFrame {
     private void EventCommitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventCommitActionPerformed
         // Se procede a abrir la ventana para ingresar un commit
         this.TA_InfoZones.setText(null);
-        WindowImputCommit WindowCommit = new WindowImputCommit(repositorio,gitController);
-        WindowCommit.setVisible(true);
-        this.setVisible(false);
+        
+        try{
+            if(gitController.gitComandosExternos(COMANDOS, "Commit->")){
+                COMANDOS.add("Commit->");
+                WindowImputCommit WindowCommit = new WindowImputCommit(repositorio,gitController,COMANDOS);
+                WindowCommit.setVisible(true);
+                this.setVisible(false);
+            }
+        }
+        catch(ComandException e){
+            JOptionPane.showMessageDialog(this, "Por favor, realice el comando Add antes de crear un Commit.", "Error de comando", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_EventCommitActionPerformed
 
     /**
@@ -361,12 +401,21 @@ public class PrincipalWindow extends javax.swing.JFrame {
      */
     private void EventPushActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventPushActionPerformed
         // Se realiza el comando Push:
+        this.TA_InfoZones.setText(null);
         
+        try{
+            if(gitController.gitComandosExternos(COMANDOS, "Push->")){
+                COMANDOS.add("Push->");
+                PrincipalWindow KeepWindow7 = new PrincipalWindow(gitController.gitPush(repositorio.getZonas(),repositorio),gitController,COMANDOS); 
+                JOptionPane.showMessageDialog(this, "Los commits se han transferido de manera correcta a Remote Repository.", "Push", JOptionPane.INFORMATION_MESSAGE);
+                KeepWindow7.setVisible(true);
+                this.setVisible(false);
+            }
+        }
+        catch(ComandException e){
+            JOptionPane.showMessageDialog(this, "por favor, genere un Commit antes de realizar un Push.", "Error de comando", JOptionPane.ERROR_MESSAGE);
         
-        PrincipalWindow KeepWindow7 = new PrincipalWindow(gitController.gitPush(repositorio.getZonas(),repositorio),gitController); 
-        JOptionPane.showMessageDialog(this, "Los commits se han transferido de manera correcta a Remote Repository.", "Push", JOptionPane.INFORMATION_MESSAGE);
-        KeepWindow7.setVisible(true);
-        this.setVisible(false);
+        }
     }//GEN-LAST:event_EventPushActionPerformed
 
     /**
@@ -375,11 +424,20 @@ public class PrincipalWindow extends javax.swing.JFrame {
      */
     private void EventPullActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventPullActionPerformed
         // se realiza el comando pull
+        this.TA_InfoZones.setText(null);
         
-        PrincipalWindow KeepWindow8 = new PrincipalWindow(gitController.gitPull(repositorio.getZonas(),repositorio),gitController); 
-        JOptionPane.showMessageDialog(this, "Los commits se han traido de forma correcta.", "Pull", JOptionPane.INFORMATION_MESSAGE);
-        KeepWindow8.setVisible(true);
+        try{
+            if(gitController.gitComandosExternos(COMANDOS, "Pull->")){
+                COMANDOS.add("Pull->");
+                PrincipalWindow KeepWindow8 = new PrincipalWindow(gitController.gitPull(repositorio.getZonas(),repositorio),gitController,COMANDOS); 
+                JOptionPane.showMessageDialog(this, "Los commits se han traido de forma correcta.", "Pull", JOptionPane.INFORMATION_MESSAGE);
+                KeepWindow8.setVisible(true);
+            }
         this.setVisible(false);
+        }
+        catch(ComandException e){
+            JOptionPane.showMessageDialog(this, "Por favor, realice el comando Push antes de ejecutar un Pull.", "Error de comando", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_EventPullActionPerformed
 
     /**

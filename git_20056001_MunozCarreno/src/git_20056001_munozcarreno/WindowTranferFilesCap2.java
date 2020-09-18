@@ -6,6 +6,7 @@
 package git_20056001_munozcarreno;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
@@ -18,15 +19,17 @@ public class WindowTranferFilesCap2 extends javax.swing.JFrame {
 
     private Repositorio repositorio;
     private GitController gitController;
+    private ArrayList<String> COMANDOS;
     private int AmountFiles;
     /**
      * Creates new form WindowTranferFilesCap2
      */
-    public WindowTranferFilesCap2(Repositorio repositorio,GitController gitController, int AmountFiles) {
+    public WindowTranferFilesCap2(Repositorio repositorio,GitController gitController, int AmountFiles,ArrayList<String> COMANDOS) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.repositorio = repositorio;
         this.gitController = gitController;
+        this.COMANDOS = COMANDOS;
         this.AmountFiles = AmountFiles;
         //se pasa el entero AmountFiles como String 
         String Cadena = String.valueOf(AmountFiles);
@@ -218,7 +221,7 @@ public class WindowTranferFilesCap2 extends javax.swing.JFrame {
             String NewAmountFiles = String.valueOf(newAmountFiles);
             this.TF_ShowAmountFiles.setText(NewAmountFiles);
             */
-            WindowTranferFilesCap2 WindowLoop = new WindowTranferFilesCap2(gitController.gitAddCaso2(repositorio.getZonas(), repositorio, AmountFiles, NumberChoose2),gitController,AmountFiles-1);
+            WindowTranferFilesCap2 WindowLoop = new WindowTranferFilesCap2(gitController.gitAddCaso2(repositorio.getZonas(), repositorio, AmountFiles, NumberChoose2),gitController,AmountFiles-1,COMANDOS);
             
             String NewAmountFiles = String.valueOf(newAmountFiles);
             this.TF_ShowAmountFiles.setText(NewAmountFiles);
@@ -251,7 +254,7 @@ public class WindowTranferFilesCap2 extends javax.swing.JFrame {
         //SE PROCEDE A ACTUALIZAR EL REPOSITORIO ELIMINANDO LOS ARCHIVOS REPETIVOS DE INDEX A TRAVES
         //DE gitController
         try{
-            PrincipalWindow KeepWindow5 = new PrincipalWindow(gitController.DeleteFilesRep(repositorio.getZonas(), repositorio,AmountFiles),gitController);
+            PrincipalWindow KeepWindow5 = new PrincipalWindow(gitController.DeleteFilesRep(repositorio.getZonas(), repositorio,AmountFiles),gitController,COMANDOS);
             JOptionPane.showMessageDialog(this, "Se han tranferidos los archivos correctamente", "Transferencia completada", JOptionPane.INFORMATION_MESSAGE);
             KeepWindow5.setVisible(true);
             this.setVisible(false);

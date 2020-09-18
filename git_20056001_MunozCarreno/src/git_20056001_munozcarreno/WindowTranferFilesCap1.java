@@ -6,6 +6,7 @@
 package git_20056001_munozcarreno;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
@@ -18,14 +19,16 @@ public class WindowTranferFilesCap1 extends javax.swing.JFrame {
     
     private Repositorio repositorio;
     private GitController gitController;
+    private ArrayList<String> COMANDOS;
     /**
      * Creates new form WindowTranferFilesCap1
      */
-    public WindowTranferFilesCap1(Repositorio repositorio, GitController gitController) {
+    public WindowTranferFilesCap1(Repositorio repositorio, GitController gitController,ArrayList<String> COMANDOS) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.repositorio = repositorio;
         this.gitController = gitController;
+        this.COMANDOS = COMANDOS;
         this.TF_AmountFilesAvailables.setText(gitController.GetAmountFiles(repositorio.getZonas(),repositorio));
         
     }
@@ -158,7 +161,7 @@ public class WindowTranferFilesCap1 extends javax.swing.JFrame {
         
         //Ahora se procede a abrir la siguient ventana para ingresar los archivos
         try{
-            WindowTranferFilesCap2 w2 = new WindowTranferFilesCap2(gitController.VerifAmountFiles(repositorio.getZonas(),repositorio,AmountFiles),gitController,AmountFiles);
+            WindowTranferFilesCap2 w2 = new WindowTranferFilesCap2(gitController.VerifAmountFiles(repositorio.getZonas(),repositorio,AmountFiles),gitController,AmountFiles,COMANDOS);
             w2.setVisible(true);
             this.setVisible(false);
         }

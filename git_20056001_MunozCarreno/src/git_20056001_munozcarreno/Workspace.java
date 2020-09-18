@@ -105,6 +105,10 @@ public class Workspace {
         return formando;
     }
     
+    /**
+     * 
+     * @return String
+     */
     public String toStringInterfazNum() {
         //String Archivos = "";
         int i;
@@ -129,5 +133,11 @@ public class Workspace {
         } 
         return Archivos;
     }
+    
+    
+    
+    
+    
+    
     
 }
