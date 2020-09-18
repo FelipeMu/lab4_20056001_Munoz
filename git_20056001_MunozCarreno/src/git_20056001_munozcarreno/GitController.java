@@ -17,10 +17,10 @@ public class GitController {
     
     
     /**
-     * 
+     * METODO QUE INICIALIZA EL REPOSITORIO
      * @param RepoName
      * @param AuthorName
-     * @return Repositorio
+     * @return Repositorio 
      * @throws RepositoryAuthorException
      * @throws InvalidDatasException 
      */
@@ -40,8 +40,14 @@ public class GitController {
         return repositorio;
     }
     
+    
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //________METODOS RELACIONADOS CON LOS COMANDOS(BOTONES): Nuevo Archivo, add, commit, push, pull ___________
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    
     /**
-     * 
+     * METODO QUE TIENE COMO OBJETIVO AGREGAR ARCHIVOS A LA ZONA WORKSPACE (COMANDO NUEVO ARCHIVO)
      * @param NameFile
      * @param Content
      * @param Zonas
@@ -54,15 +60,10 @@ public class GitController {
         if(NameFile == null || NameFile.isEmpty() || NameFile.trim().isEmpty() || Content == null || Content.isEmpty() || Content.trim().isEmpty()){
             throw new DatasCreateFileInvalidException();
         }
-        
-        
-        
-        
 
         //EN CASO QUE LOS DATOS SEAN VALIDOS SE PROCEDE CON EL DESARROLLO
         //DEL PROGRAMA
         
-        System.out.printf("ENTRO A GITCONTROLLER GIT AGREGAR ARCHIVOS..\n\n");
         String FechaHora;
         
         
@@ -91,27 +92,11 @@ public class GitController {
         //SE ACTUALIZA EL TDA DE ZonasDeTrabajo
         Zonas.setWorkspace(NuevoWorkspace);
         rep.setZonas(Zonas);
-        System.out.printf("SE RETORNA LA NUEVA ZONA DEL METODO AGREGARARCHIVOS.\n");
         return rep;
     }
     
     /**
-     * 
-     * @param repositorio
-     * @return String
-     */
-    public String gitStatusWorkspace(Repositorio repositorio){
-        
-        ZonasDeTrabajo Zonas = repositorio.getZonas();
-        Workspace w = Zonas.getWorkspace();
-        String archivosW = w.toStringInterfaz();
-
-        return archivosW;
-    }
-    
-     
-    /**
-     * 
+     * METODO QUE AGREGA TODOS LOS ARCHIVOS ALMACENADOS EN WORKSPACE A LA ZONA INDEX
      * @param Zonas
      * @param rep
      * @return Repositorio
@@ -143,8 +128,9 @@ public class GitController {
         return rep;
 
     }   
+    
    /**
-    * 
+    * METODO QUE AGREGA ARCHIVOS ESPECIFICOS DE LA ZONA WORKSPACE A LA ZONA INDEX
     * @param Zonas
     * @param rep
     * @param AmountFilesTT
@@ -171,8 +157,7 @@ public class GitController {
             throw new FilesTransferedException();
         }
         
-        if(NumberChoose < 0 || NumberChoose > cantidadArch){
-            System.out.printf("\t\t\t\t\t entro a un catchhhhhhhhhhhhh\n");
+        if(NumberChoose < 0 || NumberChoose > cantidadArch){ 
             throw new NumberFileOutLimitException();
         }
         
@@ -197,22 +182,10 @@ public class GitController {
 
         return rep;
     }
-    /**
-     * 
-     * @param repositorio
-     * @return String
-     */
-    public String gitStatusIndex(Repositorio repositorio){
-        
-        ZonasDeTrabajo Zonas = repositorio.getZonas();
-        Index i = Zonas.getIndex();
-        String archivosI = i.toStringInterfaz();
-
-        return archivosI;
-    }
+    
     
     /**
-     * 
+     * METODO QUE CREA UN COMMIT Y ACTUALIZA LOCAL REPOSITORY
      * @param Zonas
      * @param rep
      * @param Author
@@ -283,7 +256,7 @@ public class GitController {
     }
     
     /**
-     * 
+     * METODO QUE PASA TODOS LOS COMMIT DE LOCAL A REMOTE REPOSITORY
      * @param Zonas
      * @param rep
      * @return Repositorio
@@ -324,7 +297,7 @@ public class GitController {
     }
     
     /**
-     * 
+     * METODO QUE TRAE TODOS LOS ARCHIVOS DE CADA COMMIT A LA ZONA WORKSPACE Y CADA COMMIT A LA ZONA LOCAL REPOSITORY
      * @param Zonas
      * @param rep
      * @return Repositorio
@@ -362,8 +335,41 @@ public class GitController {
         return rep;
     }
     
+    ////////////////////////////////////////////////////////////////////////////
+    //________METODOS RELACIONADOS CON LOS STATUS DE CADA ZONA__________________
+    ////////////////////////////////////////////////////////////////////////////
+    
+    
+     /**
+     * METODO QUE TIENE COMO OBJETIVO RETORNAR UNA CADENA QUE CONTIENE TODOS LOS ARCHIVOS DE WORKSPACE
+     * @param repositorio
+     * @return String
+     */
+    public String gitStatusWorkspace(Repositorio repositorio){
+        
+        ZonasDeTrabajo Zonas = repositorio.getZonas();
+        Workspace w = Zonas.getWorkspace();
+        String archivosW = w.toStringInterfaz();
+
+        return archivosW;
+    }
+    
     /**
-     * 
+     * METODO QUE RETORNA UNA CADENA DE STRING CON TODOS LOS ARCHIVOS CONTENIDOS EN INDEX
+     * @param repositorio
+     * @return String
+     */
+    public String gitStatusIndex(Repositorio repositorio){
+        
+        ZonasDeTrabajo Zonas = repositorio.getZonas();
+        Index i = Zonas.getIndex();
+        String archivosI = i.toStringInterfaz();
+
+        return archivosI;
+    }
+    
+    /**
+     * METODO QUE RETORNA UNA CADENA DE STRING CON CADA COMMIT DE LOCAL, MOSTRANDO MENSAJE Y ARCHIVOS VINCULADOS
      * @param repositorio
      * @param Zonas
      * @return String 
@@ -376,7 +382,7 @@ public class GitController {
     }
     
     /**
-     * 
+     * METODO QUE RETORNA UNA CADENA DE STRING CON CADA COMMIT DE REMOTE, MOSTRANDO MENSAJE Y ARCHIVOS VINCULADOS
      * @param repositorio
      * @param Zonas
      * @return String 
@@ -389,22 +395,35 @@ public class GitController {
     }
     
     
+    ////////////////////////////////////////////////////////////////////////////
+    //____METODOS RELACIONADOS RELACIONEADOS CON LA VALIDACION DE UN COMANDO____
+    ////////////////////////////////////////////////////////////////////////////
     
+    /**
+     * METODO CUYO ES OBJETIVO ES VERIFICAR SI EL COMANDO EJECUTADO ES CORRECTO
+     * @param ListaComandos
+     * @param comando
+     * @return boolean
+     * @throws ComandException 
+     */
     public boolean gitComandosExternos(ArrayList<String> ListaComandos,String comando) throws ComandException{
         if(!gitComandos(ListaComandos,comando)){
             throw new ComandException();
         
         }
-        System.out.printf("\t\t\t\t\t SE RETORNA TRUE EN COMANDOS_EXTERNOS\n");
         return true;
     }
     
     
     
-    
+    /**
+     * METODO QUE DEPENDIENDO DEL COMANDO EJECUTADO, VERIFICA SI ES POSIBLE HACER DICHO COMANDO
+     * @param ListaComandos
+     * @param comando
+     * @return 
+     */
     public boolean gitComandos(ArrayList<String> ListaComandos,String comando){
         
-
         boolean ejecutar = true;
         //SE PROCEDE A VERIFICAR QUE EL COMANDO "comando" SELECCIONADO SEA VALIDO
         
@@ -432,7 +451,6 @@ public class GitController {
 
                 //SE OBTIENE EL COMANDO (String)
                 C = ListaComandos.get(largo-1);
-
 
                 switch(comando){
 
@@ -491,7 +509,6 @@ public class GitController {
                             ejecutar = false;
                         }
                         break;
-
                 }
             }   
         }
@@ -502,24 +519,16 @@ public class GitController {
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    ////////////////////////////////////////////////////////////////////////////
-    //________metodos auxiliares______________________________________________
-    ////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    //___________METODOS AUXILIARES QUE AYUDAN A LOS METODOS PRINCIPALES (comandos)____________
+    ///////////////////////////////////////////////////////////////////////////////////////////
     
     /**
-     * 
+     * SE OBTIENE UN STRING CON TODOS LOS ARCHIVOS DE WORKSPACE
      * @param Zonas
      * @param rep
      * @return String
      */
-    //descripcion metodo: se obtiene un string con todos los archivos de workspace
     public String GetAmountFiles(ZonasDeTrabajo Zonas,Repositorio rep) {
         String A = "";
         Workspace workspace = Zonas.getWorkspace();
@@ -531,7 +540,7 @@ public class GitController {
     }
     
     /**
-     * 
+     * METODO QUE REVISA QUE LA CANTIDAD DE ARCHIVOS A ONGRESAR A INDEX SEA MENOR QUE LA CANTIDAD DE ARCHIVOS EN WORKSPACE
      * @param Zonas
      * @param rep
      * @param AmountFiles
@@ -563,7 +572,7 @@ public class GitController {
     }
     
     /**
-     * 
+     * METODO RETORNA UN STRING CON TODOS LOS ARCHIVOS DE WORKSPACE ENUMERADOS, EJEMPLO, 1)ARCHIVO.TXT, 2)ARCHIVO2.RKT, ETC.
      * @param repositorio
      * @return String
      */
@@ -575,17 +584,21 @@ public class GitController {
         String archivosW = w.toStringInterfazNum();
 
         return archivosW;
-    
-    
     }
     
+    /**
+     * METODO QUE ELIMINA LOS ARCHIVOS REPETIDOS EN INDEX AL MOMENTO QUE SE EJECUTA UN ADD
+     * @param Zonas
+     * @param rep
+     * @param AmountFiles
+     * @return Repositorio
+     * @throws AmountFilesStillPositiveException 
+     */
     public Repositorio DeleteFilesRep(ZonasDeTrabajo Zonas,Repositorio rep,int AmountFiles) throws AmountFilesStillPositiveException{
         if(AmountFiles > 0){
          throw new AmountFilesStillPositiveException();
         }
-        
-        
-        
+
         //se obtiene la lista de archivos de index
         Index index = Zonas.getIndex();
         ArrayList<ArchTextoPlano> N_INDEX = index.getArchivos_Index();

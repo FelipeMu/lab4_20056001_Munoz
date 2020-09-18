@@ -6,7 +6,7 @@
 package git_20056001_munozcarreno;
 
 /**
- *
+ * EXCEPTION PARA DATOS NO VALIDOS POR PARTE DEL USUARIO
  * @author CLundstedt
  */
 public class InvalidDatasException extends Exception{

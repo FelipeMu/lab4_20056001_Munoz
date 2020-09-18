@@ -6,7 +6,7 @@
 package git_20056001_munozcarreno;
 
 /**
- *
+ * EXCEPTION PARA UN COMANDO NO VALIDO, ES DEECIR, REALIZAR UN "Nuevo Archivo" sin antes realizar un "Pull"
  * @author CLundstedt
  */
 public class ComandException extends Exception{

@@ -6,7 +6,7 @@
 package git_20056001_munozcarreno;
 
 /**
- *
+ * EXCEPTION PARA EL CASO QUE QUE LOS DATOS PARA CREAR EL COMMIT NO SEAN VALIDOS
  * @author CLundstedt
  */
 public class InvalidCommitException extends Exception{

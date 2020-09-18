@@ -62,21 +62,11 @@ public class WindowTranferFilesCap1 extends javax.swing.JFrame {
         TF_AmountFilesAvailables.setBorder(null);
         TF_AmountFilesAvailables.setCaretColor(new java.awt.Color(128, 128, 128));
         TF_AmountFilesAvailables.setEnabled(false);
-        TF_AmountFilesAvailables.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EventAmountFilesAvailables(evt);
-            }
-        });
 
         jLabel4.setText("¿Cuantos archivos desea tranferir?");
 
         jLabel5.setText("Cantidad de archivos a transferir:");
 
-        TF_PutAmountFiles.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EventPutAmountFilesActionPerformed(evt);
-            }
-        });
         TF_PutAmountFiles.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 EventPutAmountFilesKeyTyped(evt);
@@ -139,22 +129,10 @@ public class WindowTranferFilesCap1 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void EventAmountFilesAvailables(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventAmountFilesAvailables
-        //AQUI SE MUESTRA LA CANTIDAD DE ARCHIVOS DISPONIBLES EN WORKSPACE
-        
-      
-    }//GEN-LAST:event_EventAmountFilesAvailables
-
-    private void EventPutAmountFilesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventPutAmountFilesActionPerformed
-        // SE PROCE A INGRESAR LA CANTIDAD DE ARCHIVOS A TRANSFERIR
-        //int AmountFiles = Integer.parseInt(this.TF_PutAmountFiles.getText());
-        
-        //SE PROCEDE A REALIZAR UN TRY CATCH
-        
-        
-        
-    }//GEN-LAST:event_EventPutAmountFilesActionPerformed
-
+    /**
+     * EVENTO RELACIONADO AL BOTON "Transferir", SE TRANSFIERE EL ARCHIVO INDICADO POR EL NUMERO INGRESADO
+     * @param evt 
+     */
     private void EventAceptAmountFiles(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventAceptAmountFiles
          // SE PROCEDE A INGRESAR LA CANTIDAD DE ARCHIVOS A TRANSFERIR
         int AmountFiles = Integer.parseInt(this.TF_PutAmountFiles.getText());
@@ -171,16 +149,18 @@ public class WindowTranferFilesCap1 extends javax.swing.JFrame {
         }
         catch(AmountFilesNotIntException e){
             JOptionPane.showMessageDialog(this, "Por favor, ingrese un número.", "Error de datos ingresados", JOptionPane.ERROR_MESSAGE);
-        }
-        
+        }  
     }//GEN-LAST:event_EventAceptAmountFiles
 
+    /**
+     * EVENTO RELACIOANDO A LA ESCRITURA SOBRE EL TEXTFIELD DPARA INGRESAR EL NUMERO DE ARCHIVO A TRANSFERIR, REINICIA EL COLOR DEL BORDE A PREDEFINIDO
+     * @param evt 
+     */
     private void EventPutAmountFilesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_EventPutAmountFilesKeyTyped
         this.TF_PutAmountFiles.setBorder(BorderFactory.createLoweredSoftBevelBorder());
     }//GEN-LAST:event_EventPutAmountFilesKeyTyped
 
     
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTN_AceptAmountFiles;
     private javax.swing.JTextField TF_AmountFilesAvailables;

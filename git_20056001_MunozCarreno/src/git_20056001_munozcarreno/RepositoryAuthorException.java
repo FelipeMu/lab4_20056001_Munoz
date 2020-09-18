@@ -6,7 +6,7 @@
 package git_20056001_munozcarreno;
 
 /**
- *
+ * EXCEPTION EN CASO QUE EL STRING DEL NOMBRE DEL REPOSITORIO Y DEL AUTOR NO SON VALIDOS
  * @author CLundstedt
  */
 public class RepositoryAuthorException extends Exception {

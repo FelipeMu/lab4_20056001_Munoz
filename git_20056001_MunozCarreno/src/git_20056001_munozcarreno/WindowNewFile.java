@@ -144,28 +144,30 @@ public class WindowNewFile extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * EVENTO RELACIONADO AL BOTON "Enviar datos" QUE ENVIA NOMBRE Y CONTENIDO DE UN ARCHIVO A WORKSPACE
+     * @param evt 
+     */
     private void EventClickSendDatasCreateFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickSendDatasCreateFileActionPerformed
          //SE ANALIZA LA ENTRADA DEL NOMBRE DEL ARCHIVO Y EL CONTENIDO DE ESTE
          String NameFile = this.TF_ImputNameFileCreateFileActionPerformed.getText();
          String Content = this.TF_ImputContenidoCreateFileActionPerformed.getText();
 
          try{
-          
-         
             PrincipalWindow KeepWindow2 = new PrincipalWindow(gitController.gitAgregarArchivo(NameFile, Content,repositorio.getZonas(),repositorio),gitController,COMANDOS);
             KeepWindow2.setVisible(true);
             this.setVisible(false);
   
          }
          catch(DatasCreateFileInvalidException e){
-             JOptionPane.showMessageDialog(this, "Por favor, rellene los recuadros indicados", "Error de datos", JOptionPane.ERROR_MESSAGE);
-             
+             JOptionPane.showMessageDialog(this, "Por favor, rellene los recuadros indicados", "Error de datos", JOptionPane.ERROR_MESSAGE);    
          }
-        
-        
-   
     }//GEN-LAST:event_EventClickSendDatasCreateFileActionPerformed
 
+    /**
+     * EVENTO RELACIONADO AL BOTON "Aplicar" DEL NOMBRE DEL ARCHIVO
+     * @param evt 
+     */
     private void EventClickSendNameFileCreateFile(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickSendNameFileCreateFile
       
         System.out.printf("Click en aceptar nombre de autor.\n");
@@ -179,7 +181,11 @@ public class WindowNewFile extends javax.swing.JFrame {
           this.TF_ImputNameFileCreateFileActionPerformed.setBorder(BorderFactory.createLineBorder(Color.green));
         }
     }//GEN-LAST:event_EventClickSendNameFileCreateFile
-         
+        
+    /**
+     * EVENTO RELACIONADO AL BOTON "Aplicar" DEL CONTENIDO DEL ARCHIVO
+     * @param evt 
+     */
     private void EventClickSendContentCreateFile(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickSendContentCreateFile
         // TODO add your handling code here:
         System.out.printf("Click en aceptar contenido del archivo.\n");
@@ -194,6 +200,10 @@ public class WindowNewFile extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_EventClickSendContentCreateFile
 
+    /**
+     * EVENTO RELACIONADO AL TEXTFIELD DEL CONTENIDO DEL ARCHIVO
+     * @param evt 
+     */
     private void TF_ImputContenidoCreateFileKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TF_ImputContenidoCreateFileKeyTyped
         // TODO add your handling code here:
         String Content = this.TF_ImputContenidoCreateFileActionPerformed.getText();
@@ -203,6 +213,10 @@ public class WindowNewFile extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_TF_ImputContenidoCreateFileKeyTyped
 
+    /**
+     * EVENTO RELACIONADO AL TEXTFIELD DEL NOMBRE DEL ARCHIVO
+     * @param evt 
+     */
     private void TF_ImputNameFileCreateFileKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TF_ImputNameFileCreateFileKeyTyped
         // TODO add your handling code here:
         String NameFile = this.TF_ImputNameFileCreateFileActionPerformed.getText();
@@ -211,9 +225,7 @@ public class WindowNewFile extends javax.swing.JFrame {
             this.TF_ImputNameFileCreateFileActionPerformed.setBorder(BorderFactory.createLoweredSoftBevelBorder());
         }
     }//GEN-LAST:event_TF_ImputNameFileCreateFileKeyTyped
-
   
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTN_ApplyContentCreateFile;
     private javax.swing.JButton BTN_ApplyNameFileCreateFile;

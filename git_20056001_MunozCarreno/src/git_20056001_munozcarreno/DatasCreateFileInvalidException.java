@@ -6,7 +6,7 @@
 package git_20056001_munozcarreno;
 
 /**
- *
+ * EXCEPTION EN CASO QUE LOS DATOS INGRESADOS PARA CREAR UN ARCHIVO NO SON VALIDOS
  * @author CLundstedt
  */
 public class DatasCreateFileInvalidException extends Exception{

@@ -139,6 +139,10 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     //se hace click en el boton de aplicar nombre de autor
+    /**
+     * Evento relacionado con el boton "aplicar" del campo de texto nombre del autor del repositorio, se valida la entrada.
+     * @param evt 
+     */
     private void EventClickAuthorName(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickAuthorName
         // TODO add your handling code here:
         System.out.printf("Click en aceptar nombre de autor.\n");
@@ -153,7 +157,11 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_EventClickAuthorName
 
-    //se hace click en el boton de aplicar nombre del repositorio
+    
+    /**
+     * Evento relacionado con el boton "aplicar" del campo de texto del nombre del repositorio
+     * @param evt 
+     */
     private void EventClickRepoName(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickRepoName
         // TODO add your handling code here:
         System.out.printf("Click en aceptar nombre de repositorio.\n");
@@ -169,7 +177,11 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_EventClickRepoName
 
-    //se revisa el text field  de nombre de autor para ver si tiene un string valido
+   
+    /**
+     * Evento relacionado al campo de texto relacionado al nombre del autor del repositorio, se rivisa si es valida la entrada.
+     * @param evt 
+     */
     private void TF_ImputAuthorNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TF_ImputAuthorNameKeyTyped
         // TODO add your handling code here:
         String Author = this.TF_ImputAuthorName.getText();
@@ -179,7 +191,11 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_TF_ImputAuthorNameKeyTyped
 
-    //se revisa el text field  de nombre del repositorio para ver si tiene un string valido
+   
+    /**
+     * Evento relacionado al campo de texto donde se ingresa el nombre del repositorio, se revisa si la entrada es valida.
+     * @param evt 
+     */
     private void TF_ImputRepNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TF_ImputRepNameKeyTyped
         // TODO add your handling code here:
         String NombreRepositorio = this.TF_ImputRepName.getText();
@@ -189,7 +205,11 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_TF_ImputRepNameKeyTyped
 
-    //se hace click en el boton de Init para crear el repositorio.
+   
+    /**
+     * Evento relacionado al boton git Init, se inicializa el repositorio
+     * @param evt 
+     */
     private void EventClickInit(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickInit
         // TODO add your handling code here:
         String Author = this.TF_ImputAuthorName.getText();

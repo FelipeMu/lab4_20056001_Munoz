@@ -6,7 +6,7 @@
 package git_20056001_munozcarreno;
 
 /**
- *
+ * EXCEPTION EN CASO QUE DATO INGRESADO NO ES VALIDO
  * @author CLundstedt
  */
 public class AmountFilesNotIntException extends Exception {

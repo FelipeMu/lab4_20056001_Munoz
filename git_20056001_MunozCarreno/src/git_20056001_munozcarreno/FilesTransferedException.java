@@ -6,7 +6,7 @@
 package git_20056001_munozcarreno;
 
 /**
- *
+ * EXCEPTION EN CASO QUE LA CANTIDAD DE ARCHIVOS TRANSFERIDOS SEAN MAYOR A LA ESPERADA
  * @author CLundstedt
  */
 public class FilesTransferedException extends Exception {

@@ -97,25 +97,30 @@ public class WindowHowSendFiles extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * EVENTO RELACIONADO AL BOTON DE TRANSFERIR TODOS LOS ARCHIVOS DE WORKSPACE A INDEX
+     * @param evt 
+     */
     private void EventTranferAllFilesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventTranferAllFilesActionPerformed
         // SE DECIDE TRANFERIR TODOS LOS ARCHIVOS DE WORKSPACE A INDEX
         // SE MUESTRA UNA PEQUEÑA VENTANA Y SE VUELVE A LA VENTANA PRINCIPAL
         
-        
-        //se vuelve a la pantalla principal y se ejecuta el controlador gitAddCaso1
+        //SE VUELVE A LA VENTANA PRINCIPAL Y SE EJECUTA EL CONTROLADOR gitAdd1
         PrincipalWindow KeepWindow4 = new PrincipalWindow(gitController.gitAddCaso1(repositorio.getZonas(),repositorio),gitController,COMANDOS);
         JOptionPane.showMessageDialog(this, "Se han transferido todos los commits de forma correcta a Remote Repository.", "Transferencia", JOptionPane.INFORMATION_MESSAGE);
         KeepWindow4.setVisible(true);
-        this.setVisible(false);
-        
-        
+        this.setVisible(false);    
     }//GEN-LAST:event_EventTranferAllFilesActionPerformed
 
+    /**
+     * EVENTO RELACIONADO AL BOTON "Transferir archivos especificos"
+     * @param evt 
+     */
     private void EventTransferEspFilesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventTransferEspFilesActionPerformed
         // Se PROCEDE A MOSTRAR UNA NUEVA VENTANA QUE INFORMA AL USUARIO
         // LA CANTIDAD DE ARCHIVOS DISPONIBLES Y CUANTOS DESEA TRANFERIR
         
-        //SE CREA LA NUEVA VENTANA
+        //SE CREA LA NUEVA VENTANA PARA INDICAR LA CANTIDAD DE ARCHIVOS QUE SE DESEA TRASNFERIR
         WindowTranferFilesCap1 w1 = new WindowTranferFilesCap1(repositorio,gitController,COMANDOS);
         w1.setVisible(true);
         this.setVisible(false);

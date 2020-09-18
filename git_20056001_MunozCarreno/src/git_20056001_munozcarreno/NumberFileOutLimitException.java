@@ -6,7 +6,7 @@
 package git_20056001_munozcarreno;
 
 /**
- *
+ * EXCEPTION EN CASO QUE UN NUMERO INGREASADO SUPERA LA CANTIDAD DEFINIDA
  * @author CLundstedt
  */
 public class NumberFileOutLimitException extends Exception{

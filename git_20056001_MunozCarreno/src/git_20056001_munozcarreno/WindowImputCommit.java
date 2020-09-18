@@ -148,22 +148,32 @@ public class WindowImputCommit extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * EVENTO VINCULADO A LA ESCRITURA SOBRE EL TEXT FIELD PARA INGRESAR EL AUTOR DE COMMIT.  VERIRIFICA LA ENTRADA
+     * @param evt 
+     */
     private void EventAuthorCommitKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_EventAuthorCommitKeyTyped
         String Author = this.TF_AuthorCommit.getText();
         if(Author != null && !Author.isEmpty() && !Author.trim().isEmpty()){
-            System.out.printf("volver a borde original.\n");
             this.TF_AuthorCommit.setBorder(BorderFactory.createLoweredSoftBevelBorder());
         }
     }//GEN-LAST:event_EventAuthorCommitKeyTyped
 
+    /**
+     * EVENTO VINCULADO A LA ESCRITURA SOBRE EL TEXT FIELD PARA INGRESAR EL CONTENIDO DEL COMMIT.  VERIRIFICA LA ENTRADA
+     * @param evt 
+     */
     private void EventMessageCommitKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_EventMessageCommitKeyTyped
         String Author = this.TF_MessageCommit.getText();
         if(Author != null && !Author.isEmpty() && !Author.trim().isEmpty()){
-            System.out.printf("volver a borde original.\n");
             this.TF_MessageCommit.setBorder(BorderFactory.createLoweredSoftBevelBorder());
         }
     }//GEN-LAST:event_EventMessageCommitKeyTyped
 
+    /**
+     * EVENTO VINCULADO AL BOTON "Guardar" PARA EL NOMBRE DEL AUTOR DEL COMMIT, VERIFICA LA ENTRADA Y CAMBIA EL COLOR DEL BORDE DEL TEXTFIELD
+     * @param evt 
+     */
     private void EventClickBTNSaveAuthorCommitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickBTNSaveAuthorCommitActionPerformed
         // se verifica la entrada del nombre de autor
         String Author = this.TF_AuthorCommit.getText();
@@ -175,6 +185,10 @@ public class WindowImputCommit extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_EventClickBTNSaveAuthorCommitActionPerformed
 
+    /**
+     * EVENTO VINCULADO AL BOTON "Guardar" PARA EL CONTENIDO DEL COMMIT, VERIFICA LA ENTRADA Y CAMBIA EL COLOR DEL BORDE DEL TEXTFIELD
+     * @param evt 
+     */
     private void EventClickBTNSavMessgeCommitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickBTNSavMessgeCommitActionPerformed
         // Tse verifica la entrada del mesaje descriptivo:
         String Author = this.TF_MessageCommit.getText();
@@ -187,6 +201,10 @@ public class WindowImputCommit extends javax.swing.JFrame {
         
     }//GEN-LAST:event_EventClickBTNSavMessgeCommitActionPerformed
 
+    /**
+     * EVENTO VINCULADO AL BOTON "Crear commit", VERIFICA SI LOS DATOS INGRESADOS SON VALIDOS PARA CREAR EL COMMIT Y AGREGARLO A LOCAL
+     * @param evt 
+     */
     private void EventClickBTNCreateCommitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickBTNCreateCommitActionPerformed
         // se procede a actualizar el repositorio, exactamente local repository
         String Author = this.TF_AuthorCommit.getText();
@@ -203,8 +221,6 @@ public class WindowImputCommit extends javax.swing.JFrame {
         
         }
     }//GEN-LAST:event_EventClickBTNCreateCommitActionPerformed
-
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTN_CreateCommit;

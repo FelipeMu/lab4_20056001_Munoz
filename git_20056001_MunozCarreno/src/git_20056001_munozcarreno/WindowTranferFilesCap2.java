@@ -7,7 +7,6 @@ package git_20056001_munozcarreno;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
@@ -68,11 +67,6 @@ public class WindowTranferFilesCap2 extends javax.swing.JFrame {
         TF_ShowAmountFiles.setBorder(null);
         TF_ShowAmountFiles.setCaretColor(new java.awt.Color(128, 128, 128));
         TF_ShowAmountFiles.setEnabled(false);
-        TF_ShowAmountFiles.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EventShowAmountFilesActionPerformed(evt);
-            }
-        });
 
         TA_FilesAvailables.setColumns(20);
         TA_FilesAvailables.setRows(5);
@@ -90,11 +84,6 @@ public class WindowTranferFilesCap2 extends javax.swing.JFrame {
 
         jLabel2.setText("N° archivo:");
 
-        TF_PutNumberFile.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EventClickPutNumberFileActionPerformed(evt);
-            }
-        });
         TF_PutNumberFile.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 EventPutNumberFileKeyTyped(evt);
@@ -176,20 +165,19 @@ public class WindowTranferFilesCap2 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void EventShowAmountFilesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventShowAmountFilesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EventShowAmountFilesActionPerformed
-
+    /**
+     * EVENTO QUE MUESTRA EN EL TEXT AREA LOS ARCHIVOS EN WORSKAPCE ENUMERADOS
+     * @param evt 
+     */
     private void EventShowFilesAvailablesActionPerformed(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_EventShowFilesAvailablesActionPerformed
         // Se muestran los archivos disponibles en workspace
         this.TA_FilesAvailables.setText(gitController.gitFilesToTransfer(repositorio));
     }//GEN-LAST:event_EventShowFilesAvailablesActionPerformed
 
-    private void EventClickPutNumberFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickPutNumberFileActionPerformed
-        
-        
-    }//GEN-LAST:event_EventClickPutNumberFileActionPerformed
-
+    /**
+     * EVENTO VINCULADO AL BOTON "Transferir". TRANSFIERE EL ARCHIVO INGRESADO A INDEX
+     * @param evt 
+     */
     private void EventClickTransferFilesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickTransferFilesActionPerformed
         // Aqui se procede a tranferir el archivo a la zona index, la ventana
         //se vuelve a reaparecer hasta que todos los archivos sean
@@ -199,19 +187,7 @@ public class WindowTranferFilesCap2 extends javax.swing.JFrame {
         String NumberChoose1 = this.TF_PutNumberFile.getText();
         int NumberChoose2 = Integer.parseInt(this.TF_PutNumberFile.getText());
         int NumberChooseNew = NumberChoose2 - 1;
-        
-        
-        
-        //se modifica el contador de archivos restantes
-        /*
-        int newAmountFiles = Integer.parseInt(this.TF_ShowAmountFiles.getText());
-        newAmountFiles -=1;
-        String NewAmountFiles = String.valueOf(newAmountFiles);
-        this.TF_ShowAmountFiles.setText(NewAmountFiles);
-        */
-        
-        
-        
+
         //se realiza el try catch
         try{
             //Se setea la cantidad de archivos a transferir
@@ -247,7 +223,7 @@ public class WindowTranferFilesCap2 extends javax.swing.JFrame {
     }//GEN-LAST:event_EventClickTransferFilesActionPerformed
 
     /**
-     * 
+     * EVENTO RELACIOANDO AL BOTON "Listo". RETORNA A LA VENTANA PRINCIPAL CON REPOSITORIO MODIFICADO
      * @param evt 
      */
     private void EventClickButtonReadyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickButtonReadyActionPerformed
@@ -264,10 +240,13 @@ public class WindowTranferFilesCap2 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_EventClickButtonReadyActionPerformed
 
+    /**
+     * EVENTO RELACIONADO A LA ESCRITURA SOBRE EL TEXT FIELD PARA INGRESAR EL NUMERO DE ARCHIVO A TRANSFERIR
+     * @param evt 
+     */
     private void EventPutNumberFileKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_EventPutNumberFileKeyTyped
         this.TF_PutNumberFile.setBorder(BorderFactory.createLoweredSoftBevelBorder());
     }//GEN-LAST:event_EventPutNumberFileKeyTyped
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTN_ReadyForBack;

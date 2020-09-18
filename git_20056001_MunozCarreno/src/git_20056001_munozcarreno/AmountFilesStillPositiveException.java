@@ -6,7 +6,7 @@
 package git_20056001_munozcarreno;
 
 /**
- *
+ * EXCEPTION EN CASO QUE LA CANTIDAD DE ARCHIVOS A TRANSFERIR AUN ES  MAYOR 0
  * @author CLundstedt
  */
 public class AmountFilesStillPositiveException extends Exception{

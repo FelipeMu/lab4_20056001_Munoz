@@ -5,10 +5,12 @@
         <group>
             <file>file:/C:/Users/CLundstedt/Desktop/things/ASIGNATURAS/PARADIGMA/EJERCICIOS-JAVA/git_20056001_MunozCarreno/src/git_20056001_munozcarreno/PrincipalWindow.java</file>
             <file>file:/C:/Users/CLundstedt/Desktop/things/ASIGNATURAS/PARADIGMA/EJERCICIOS-JAVA/git_20056001_MunozCarreno/src/git_20056001_munozcarreno/MainWindow.java</file>
-            <file>file:/C:/Users/CLundstedt/Desktop/things/ASIGNATURAS/PARADIGMA/EJERCICIOS-JAVA/git_20056001_MunozCarreno/src/git_20056001_munozcarreno/ZonasDeTrabajo.java</file>
-            <file>file:/C:/Users/CLundstedt/Desktop/things/ASIGNATURAS/PARADIGMA/EJERCICIOS-JAVA/git_20056001_MunozCarreno/src/git_20056001_munozcarreno/MetodosExtras.java</file>
-            <file>file:/C:/Users/CLundstedt/Desktop/things/ASIGNATURAS/PARADIGMA/EJERCICIOS-JAVA/git_20056001_MunozCarreno/src/git_20056001_munozcarreno/GitController.java</file>
+            <file>file:/C:/Users/CLundstedt/Desktop/things/ASIGNATURAS/PARADIGMA/EJERCICIOS-JAVA/git_20056001_MunozCarreno/src/git_20056001_munozcarreno/AmountFilesException.java</file>
+            <file>file:/C:/Users/CLundstedt/Desktop/things/ASIGNATURAS/PARADIGMA/EJERCICIOS-JAVA/git_20056001_MunozCarreno/src/git_20056001_munozcarreno/AmountFilesStillPositiveException.java</file>
+            <file>file:/C:/Users/CLundstedt/Desktop/things/ASIGNATURAS/PARADIGMA/EJERCICIOS-JAVA/git_20056001_MunozCarreno/src/git_20056001_munozcarreno/WindowTranferFilesCap1.java</file>
             <file>file:/C:/Users/CLundstedt/Desktop/things/ASIGNATURAS/PARADIGMA/EJERCICIOS-JAVA/git_20056001_MunozCarreno/src/git_20056001_munozcarreno/Main.java</file>
+            <file>file:/C:/Users/CLundstedt/Desktop/things/ASIGNATURAS/PARADIGMA/EJERCICIOS-JAVA/git_20056001_MunozCarreno/src/git_20056001_munozcarreno/AmountFilesNotIntException.java</file>
+            <file>file:/C:/Users/CLundstedt/Desktop/things/ASIGNATURAS/PARADIGMA/EJERCICIOS-JAVA/git_20056001_MunozCarreno/src/git_20056001_munozcarreno/WindowHowSendFiles.java</file>
         </group>
     </open-files>
 </project-private>

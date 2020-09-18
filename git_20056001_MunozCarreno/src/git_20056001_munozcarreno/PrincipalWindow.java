@@ -16,6 +16,7 @@ public class PrincipalWindow extends javax.swing.JFrame {
     private Repositorio repositorio;
     private GitController gitController;
     private ArrayList<String> COMANDOS;
+    
     /**
      * Creates new form PrincipalWindow
      */
@@ -272,7 +273,7 @@ public class PrincipalWindow extends javax.swing.JFrame {
     
     
     /**
-     * 
+     * evento relacionado al boton Status Workspace, muestra los archivos de workspace
      * @param evt 
      */
     private void EventClickWActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickWActionPerformed
@@ -285,7 +286,7 @@ public class PrincipalWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_EventClickWActionPerformed
 
     /**
-     * 
+     * evento relacionado al boton Status Index, muestra los archivos de index
      * @param evt 
      */
     private void EventClickIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickIActionPerformed
@@ -298,6 +299,10 @@ public class PrincipalWindow extends javax.swing.JFrame {
         
     }//GEN-LAST:event_EventClickIActionPerformed
 
+    /**
+     * evento relacionado con el boton Status Local Repository, muestra mensaje y los archivos relacionados a el.
+     * @param evt 
+     */
     private void EventClickLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickLActionPerformed
         // AQUI SE PROCEDE A MOSTRAR LA INFORMACION DE LA ZONA LOCAL REPOSITORY:
         this.TF_NameZome.setText("Local Rep.");
@@ -309,6 +314,10 @@ public class PrincipalWindow extends javax.swing.JFrame {
         
     }//GEN-LAST:event_EventClickLActionPerformed
 
+    /**
+     * evento relacionado con el boton Status Remote Repository, muestra mensaje y los archivos relacionados a el.
+     * @param evt 
+     */
     private void EventClickRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickRActionPerformed
         // AQUI SE PROCEDE A MOSTRAR LA INFORMACION DE LA ZONA LOCAL REPOSITORY:
         this.TF_NameZome.setText("Remote Rep.");
@@ -319,10 +328,10 @@ public class PrincipalWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_EventClickRActionPerformed
 
     
-    //EVENTOS RELACIONADOS CON LA ENTRADA DE DATOS
+    //EVENTOS RELACIONADOS CON LOS BOTONES QUE GENERAN CAMBIOS SOBRE EL REPOSITORIO
     
     /**
-     * 
+     * evento relacionado al boton "Nuevo Archivo", agrega un archivi a workspace a traves de una ventana emergente
      * @param evt 
      */
     private void EventClickNewFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventClickNewFileActionPerformed
@@ -338,19 +347,15 @@ public class PrincipalWindow extends javax.swing.JFrame {
                 WindowForCreateFile.setVisible(true);
                 //this.dispose();
                 this.setVisible(false);
-            }
-            
+            }    
         }
         catch(ComandException e){
             JOptionPane.showMessageDialog(this, "Para seguir cargando archivos a workspace, por favor realice un Pull", "Error de comando", JOptionPane.ERROR_MESSAGE);
-        }
-        
-        
-        
+        }     
     }//GEN-LAST:event_EventClickNewFileActionPerformed
 
     /**
-     * 
+     * evento relacionado con el boton "add", agrega ya sea archivos especificos o total de archivos a la zona index
      * @param evt 
      */
     private void EventAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventAddActionPerformed
@@ -375,7 +380,7 @@ public class PrincipalWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_EventAddActionPerformed
 
     /**
-     * 
+     * evento relacioando con el boton "commit", genera un commit y lo pasa a la zona Local Repository
      * @param evt 
      */
     private void EventCommitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventCommitActionPerformed
@@ -396,7 +401,7 @@ public class PrincipalWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_EventCommitActionPerformed
 
     /**
-     * 
+     * evento relacionado con el boton "push", se transfieren los commit de local a remote repository
      * @param evt 
      */
     private void EventPushActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventPushActionPerformed
@@ -419,7 +424,7 @@ public class PrincipalWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_EventPushActionPerformed
 
     /**
-     * 
+     * evento relacionado con el boton "pull", trae los archivos de cada commit de remote a workspace y los commits de remote a local.
      * @param evt 
      */
     private void EventPullActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EventPullActionPerformed
