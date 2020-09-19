@@ -63,7 +63,7 @@ public class WindowHowSendFiles extends javax.swing.JFrame {
             }
         });
 
-        BTN_TranferEspFiles.setText("Transferir archivos específicos");
+        BTN_TranferEspFiles.setText("Transferir archivos especificos");
         BTN_TranferEspFiles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EventTransferEspFilesActionPerformed(evt);

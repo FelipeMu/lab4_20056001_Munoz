@@ -159,7 +159,7 @@ public class PrincipalWindow extends javax.swing.JFrame {
         jScrollPane1.setViewportView(TA_InfoZones);
 
         jLabel6.setFont(new java.awt.Font("Haettenschweiler", 0, 24)); // NOI18N
-        jLabel6.setText("Información de las zonas de trabajo:");
+        jLabel6.setText("Informacion de las zonas de trabajo:");
 
         jLabel7.setFont(new java.awt.Font("Haettenschweiler", 0, 48)); // NOI18N
         jLabel7.setText("Git");
@@ -390,7 +390,7 @@ public class PrincipalWindow extends javax.swing.JFrame {
             }
         }
         catch(ComandException e){
-            JOptionPane.showMessageDialog(this, "Si por casualidad realizó un \"push\", es necesario que realice un \"pull\" para ejecutar le comando \"add\", si ese no es el caso, entonces agregue archivos a la zona workspace.", "Error de comando", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Si por casualidad realizo un \"push\", es necesario que realice un \"pull\" para ejecutar le comando \"add\", si ese no es el caso, entonces agregue archivos a la zona workspace.", "Error de comando", JOptionPane.ERROR_MESSAGE);
         }
         
     }//GEN-LAST:event_EventAddActionPerformed

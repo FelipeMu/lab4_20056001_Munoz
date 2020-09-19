@@ -213,7 +213,7 @@ public class LocalRepository {
             //SE CONCATENA LA HORA
             CommitNumero = CommitNumero.concat("\nFecha: ");
             CommitNumero = CommitNumero.concat(C.getTiempo());
-            parte1 = CommitNumero.concat("\nArchivos añadidos:\n");
+            parte1 = CommitNumero.concat("\nArchivos agregados:\n");
  
            //SE OBTIENE LA LISTA DE ARCHIVOS DEL COMMIT
             listaArchivos = C.getArchivosCommit();

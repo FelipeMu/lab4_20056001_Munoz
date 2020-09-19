@@ -53,7 +53,7 @@
                           </Group>
                           <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Component id="BTN_ReadyForBack" alignment="1" max="32767" attributes="0"/>
               </Group>
@@ -139,7 +139,7 @@
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="N&#xb0; archivo:"/>
+        <Property name="text" type="java.lang.String" value="Numero archivo:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="TF_PutNumberFile">

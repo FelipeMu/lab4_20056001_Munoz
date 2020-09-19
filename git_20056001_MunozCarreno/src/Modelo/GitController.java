@@ -554,7 +554,6 @@ public class GitController {
         ArrayList<ArchTextoPlano> archivos = workspace.getArchivos_Workspace();
         int amount = archivos.size();
         String numCadena = String.valueOf(amount);
-        System.out.printf("el string es:"+numCadena+".\n\n");
         return numCadena;
     }
     

@@ -80,7 +80,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ingrese la siguiente informaci&#xf3;n para inicializar su repositorio."/>
+        <Property name="text" type="java.lang.String" value="Ingrese la siguiente informacion para inicializar su repositorio."/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="TF_ImputAuthorName">

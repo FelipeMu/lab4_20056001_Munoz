@@ -57,7 +57,7 @@ public class WindowFor5Commits extends javax.swing.JFrame {
         TA_LastFiveCommits.setEnabled(false);
         jScrollPane1.setViewportView(TA_LastFiveCommits);
 
-        jButton1.setText("Volver al menú principal");
+        jButton1.setText("Volver al menu principal");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EventReturnPrincipalWindowActionPerformed(evt);

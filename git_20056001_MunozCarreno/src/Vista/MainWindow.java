@@ -53,7 +53,7 @@ public class MainWindow extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Nuevo Repositorio");
 
-        jLabel1.setText("Ingrese la siguiente información para inicializar su repositorio.");
+        jLabel1.setText("Ingrese la siguiente informacion para inicializar su repositorio.");
 
         TF_ImputAuthorName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -208,7 +208,7 @@ public class MainWindow extends javax.swing.JFrame {
         String Author = this.TF_ImputAuthorName.getText();
         String NameRep = this.TF_ImputRepName.getText();
         if(Author != null  && !Author.trim().isEmpty() && NameRep !=null && !NameRep.trim().isEmpty() && !Author.equals(NameRep)){
-            JOptionPane.showMessageDialog(this, "Repositorio listo", "Creación de repositorio", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Repositorio listo", "Creacion de repositorio", JOptionPane.INFORMATION_MESSAGE);
             
         }
         
@@ -222,7 +222,7 @@ public class MainWindow extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "El nombre del repositorio debe ser distinto al nombre del autor", "Error de datos ingresados", JOptionPane.ERROR_MESSAGE);
         }
         catch(InvalidDatasException e){
-            JOptionPane.showMessageDialog(this, "Repositorio no válido", "Error de validación", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Repositorio no valido", "Error de validacion", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_EventClickInit
 

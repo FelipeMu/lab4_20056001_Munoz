@@ -66,7 +66,7 @@ public class WindowTranferFilesCap1 extends javax.swing.JFrame {
         TF_AmountFilesAvailables.setCaretColor(new java.awt.Color(128, 128, 128));
         TF_AmountFilesAvailables.setEnabled(false);
 
-        jLabel4.setText("¿Cuantos archivos desea tranferir?");
+        jLabel4.setText("Cuantos archivos desea tranferir...");
 
         jLabel5.setText("Cantidad de archivos a transferir:");
 
@@ -147,11 +147,11 @@ public class WindowTranferFilesCap1 extends javax.swing.JFrame {
             this.setVisible(false);
         }
         catch(AmountFilesException e){
-            JOptionPane.showMessageDialog(this, "Por favor, ingrese una cantidad de archivos válida.", "Error de datos ingresados", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese una cantidad de archivos valida.", "Error de datos ingresados", JOptionPane.ERROR_MESSAGE);
             this.TF_PutAmountFiles.setBorder(BorderFactory.createLineBorder(Color.red));
         }
         catch(AmountFilesNotIntException e){
-            JOptionPane.showMessageDialog(this, "Por favor, ingrese un número.", "Error de datos ingresados", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese un numero.", "Error de datos ingresados", JOptionPane.ERROR_MESSAGE);
         }  
     }//GEN-LAST:event_EventAceptAmountFiles
 

@@ -71,7 +71,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="BTN_TranferEspFiles">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Transferir archivos espec&#xed;ficos"/>
+        <Property name="text" type="java.lang.String" value="Transferir archivos especificos"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EventTransferEspFilesActionPerformed"/>

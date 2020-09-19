@@ -87,7 +87,7 @@ public class WindowTranferFilesCap2 extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(TA_FilesAvailables);
 
-        jLabel2.setText("N° archivo:");
+        jLabel2.setText("Numero archivo:");
 
         TF_PutNumberFile.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -138,7 +138,7 @@ public class WindowTranferFilesCap2 extends javax.swing.JFrame {
                                         .addComponent(BTN_TransferFiles, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(13, 13, 13))))
                             .addComponent(jLabel3))
-                        .addGap(0, 6, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(BTN_ReadyForBack, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -212,11 +212,11 @@ public class WindowTranferFilesCap2 extends javax.swing.JFrame {
         
         }
         catch(FilesTransferedException e){
-            JOptionPane.showMessageDialog(this, "Todos los archivos fueron ingresados, por favor presione el botón 'Listo'.", "Error de datos ingresados", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Todos los archivos fueron ingresados, por favor presione el boton 'Listo'.", "Error de datos ingresados", JOptionPane.ERROR_MESSAGE);
             this.TF_PutNumberFile.setBorder(BorderFactory.createLineBorder(Color.red));
         }
         catch(NumberFileOutLimitException e){
-            JOptionPane.showMessageDialog(this, "Por favor, ingrese un número de archivo válido.", "Error de datos ingresados", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese un numero de archivo valido.", "Error de datos ingresados", JOptionPane.ERROR_MESSAGE);
             this.TF_PutNumberFile.setBorder(BorderFactory.createLineBorder(Color.red));
         }
         
@@ -241,7 +241,7 @@ public class WindowTranferFilesCap2 extends javax.swing.JFrame {
             this.setVisible(false);
         }
         catch(AmountFilesStillPositiveException e){
-            JOptionPane.showMessageDialog(this, "Aún existen archivos por transferir, por favor transfiera la cantidad de archivos restantes.", "Error de acción ejecutada", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Aun existen archivos por transferir, por favor transfiera la cantidad de archivos restantes.", "Error de accion ejecutada", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_EventClickButtonReadyActionPerformed
 

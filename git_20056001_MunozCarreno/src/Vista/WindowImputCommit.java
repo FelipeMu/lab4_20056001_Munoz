@@ -220,7 +220,7 @@ public class WindowImputCommit extends javax.swing.JFrame {
             this.setVisible(false);
         }
         catch(InvalidCommitException e){
-            JOptionPane.showMessageDialog(this, "Por favor, ingresa datos válidos.", "Error de datos ingresados", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor, ingresa datos validos.", "Error de datos ingresados", JOptionPane.ERROR_MESSAGE);
         
         }
     }//GEN-LAST:event_EventClickBTNCreateCommitActionPerformed
