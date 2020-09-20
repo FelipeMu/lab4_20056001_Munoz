@@ -49,7 +49,7 @@ public class WindowFor5Commits extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Últimos 5 commit de Local Repository");
+        setTitle("Ultimos 5 commit de Local Repository");
 
         TA_LastFiveCommits.setColumns(20);
         TA_LastFiveCommits.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N

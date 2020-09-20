@@ -54,7 +54,7 @@ public class WindowImputCommit extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Creación de commit");
+        setTitle("Creacion de commit");
 
         jLabel1.setText("Rellene los recuadros para crear el commit.");
 

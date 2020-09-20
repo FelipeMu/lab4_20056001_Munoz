@@ -55,6 +55,7 @@ public class WindowTranferFilesCap1 extends javax.swing.JFrame {
         BTN_AceptAmountFiles = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Archivos a transferir");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Cantidad de archivos disponibles a tranferir: ");

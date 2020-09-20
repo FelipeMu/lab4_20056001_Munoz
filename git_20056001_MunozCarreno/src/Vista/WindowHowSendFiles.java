@@ -54,7 +54,7 @@ public class WindowHowSendFiles extends javax.swing.JFrame {
         setTitle("Transferencia de archivos");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("¿De que forma desea transferir los archivos?");
+        jLabel1.setText("De que forma desea transferir los archivos:");
 
         BTN_TransferAllFiles.setText("Transferir todos los archivos");
         BTN_TransferAllFiles.addActionListener(new java.awt.event.ActionListener() {

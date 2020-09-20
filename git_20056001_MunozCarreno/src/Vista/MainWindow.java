@@ -21,7 +21,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     //se instacia un obejto de tipo GitController
      private GitController gitController;
-     private ArrayList<String> COMANDOS = new ArrayList<>();;
+     private ArrayList<String> COMANDOS = new ArrayList<>();
     /**
      * Creates new form MainWindow
      */
